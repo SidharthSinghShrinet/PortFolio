@@ -6,9 +6,8 @@ import About from './pages/About'
 import Skills from './pages/Skills'
 
 const App = () => {
-  let toggle = useSelector((state)=>state.global.toggle);
   return (
-    <div className={`min-h-screen ${toggle?"bg-white":"bg-black"} flex flex-col`}>
+    <div className={`min-h-screen flex flex-col`}>
       <Navbar/>
       <HomePage/>
       <About/>

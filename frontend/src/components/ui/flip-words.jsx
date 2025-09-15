@@ -2,6 +2,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { useSelector } from "react-redux";
 
 export const FlipWords = ({
   words,
@@ -10,7 +11,7 @@ export const FlipWords = ({
 }) => {
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [isAnimating, setIsAnimating] = useState(false);
-
+  const toggle = useSelector((state)=>state.global.toggle);
   // thanks for the fix Julian - https://github.com/Julian-AT
   const startAnimation = useCallback(() => {
     const word = words[words.indexOf(currentWord) + 1] || words[0];
@@ -53,7 +54,9 @@ export const FlipWords = ({
           position: "absolute",
         }}
         className={cn(
-          "z-10 inline-block relative text-left text-neutral-900 dark:text-neutral-100 px-2",
+          `z-10 inline-block relative ${
+              toggle ? "text-purple-800" : "text-purple-500"
+            } px-2`,
           className
         )}
         key={currentWord}>
