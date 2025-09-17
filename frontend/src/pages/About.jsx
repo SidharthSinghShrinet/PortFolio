@@ -14,20 +14,19 @@ const About = () => {
     >
       <div className="w-[75%] lg:w-[75%] h-full flex flex-col justify-evenly">
         <div className="flex flex-col gap-2">
-          <p className={`text-2xl sm:text-3xl lg:text-4xl font-bold tracking-wider ${toggle?"text-black":"text-white"}`}>
+          <p className={`text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-wider ${toggle?"text-black":"text-white"}`}>
             About Me
           </p>
           <div className="w-28 rounded-full h-1 bg-purple-600"></div>
         </div>
         <div className={`flex flex-col gap-7 ${toggle?"text-gray-700":"text-gray-300"}`}>
           <p className="text-base sm:text-lg lg:text-xl font-semibold">
-            Passionate and results-driven BCA student with hands-on experience
-            building 100+ React projects, 50+ MERN applications, and 20+
-            AI-integrated solutions.
+            Passionate and results-driven B.TECH graduate with hands-on experience
+            building 60+ React projects, 15+ MERN applications, and planning to master AI integration in development.
           </p>
           <p className="text-base sm:text-lg lg:text-xl font-semibold">
             Solved 200+ LeetCode problems, showcasing strong problem-solving
-            skills. Proficient in full-stack development, AI integration, and
+            skills. Proficient in full-stack development, and
             scalable architecture design, aiming to excel in innovative IT
             roles.
           </p>

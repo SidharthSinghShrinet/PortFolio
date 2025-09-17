@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import { useSelector } from 'react-redux'
 import About from './pages/About'
 import Skills from './pages/Skills'
+import Project from './pages/Project'
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <HomePage/>
       <About/>
       <Skills/>
+      <Project/>
     </div>
   )
 }
