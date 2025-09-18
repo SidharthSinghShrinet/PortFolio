@@ -30,7 +30,7 @@ const Project = () => {
             <div key={idx} onClick={()=>setColour(idx)} className={`border-1 border-black px-2 lg:px-4 py-1 rounded-4xl ${targetColour===title?"bg-purple-800 text-white":"bg-gray-600 text-white"} cursor-pointer`}>{title}</div>
           ))}
         </div>
-        <div className="w-full h-fit">
+        <div className="w-full h-fit pb-5">
           <ExpandableCardDemo/>
         </div>
       </div>

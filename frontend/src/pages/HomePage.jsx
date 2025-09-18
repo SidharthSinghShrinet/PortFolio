@@ -50,7 +50,7 @@ const HomePage = () => {
             className={`border-5 rounded-[50%] ${
               toggle ? "border-purple-400" : "border-gray-300"
             }`}
-            src="../../src/assets/profile.png"
+            src="../../src/assets/profile1.png"
             alt=""
             width={400}
           />
