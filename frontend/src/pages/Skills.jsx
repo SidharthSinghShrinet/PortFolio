@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { IoCode } from "react-icons/io5";
 import { FaReact } from "react-icons/fa6";
@@ -98,13 +99,17 @@ const Skills = () => {
   ];
 
   return (
-    <div
+    <motion.div
       className={`min-h-screen flex flex-col justify-start items-center ${
         toggle ? "bg-white" : "bg-black"
       }`}
+      initial={{opacity:0,y:250}}
+      whileInView={{opacity:1,y:0}}
+      transition={{duration:1,ease:"easeOut"}}
+      viewport={{once:true}}
     >
       <div className="w-[75%] max-lg:w-full">
-        <div className="flex flex-col gap-2 lg:mx-0 lg:my-16 my-8 mx-13">
+        <div className="flex flex-col gap-2 lg:mx-0 lg:my-16 my-8 mx-6">
           <p
             className={`text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-wider ${
               toggle ? "text-black" : "text-white"
@@ -118,7 +123,7 @@ const Skills = () => {
           <DraggableCardDemo items={items} />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

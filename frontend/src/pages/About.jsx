@@ -7,12 +7,12 @@ const About = () => {
   return (
     <motion.div
       className={`h-[500px] w-full items-center flex ${toggle?"bg-gray-100":"bg-gray-900"} justify-center`}
-      initial={{ opacity: 0, y: 200 }}   // start hidden
+      initial={{ opacity: 0, y: 250 }}   // start hidden
       whileInView={{ opacity: 1, y: 0 }} // animate when in view
       transition={{ duration: 1, ease: "easeOut" }}
       viewport={{ once: true }} // animate only once
     >
-      <div className="w-[75%] lg:w-[75%] h-full flex flex-col justify-evenly">
+      <div className="w-[88%] lg:w-[75%] h-full flex flex-col justify-evenly">
         <div className="flex flex-col gap-2">
           <p className={`text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-wider ${toggle?"text-black":"text-white"}`}>
             About Me

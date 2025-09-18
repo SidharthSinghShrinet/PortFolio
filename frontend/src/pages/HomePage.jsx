@@ -25,7 +25,7 @@ const HomePage = () => {
             BENGALURU, KARNATAKA
           </p>
           <h2
-            className={`max-lg:text-5xl lg:text-5xl max-sm:text-4xl tracking-widest font-bold ${
+            className={`max-lg:text-5xl lg:text-5xl max-sm:text-4xl tracking-wider font-extrabold ${
               toggle ? "text-black" : "text-gray-300"
             }`}
           >
