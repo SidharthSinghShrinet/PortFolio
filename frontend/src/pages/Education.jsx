@@ -1,10 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { motion } from 'framer-motion'
 
 const Education = () => {
   const toggle = useSelector((state) => state.global.toggle);
   return (
-    <div className="min-h-[55vh] w-full flex justify-center bg-neutral-200 pb-10">
+    <motion.div className={`min-h-[55vh] w-full flex justify-center ${toggle?"bg-neutral-200":"bg-black"} pb-10 lg:pb-25`}
+    initial={{opacity:0,y:250}}
+    whileInView={{opacity:1,y:0}}
+    transition={{duration:1,ease:"easeOut"}}
+    viewport={{once:true}}>
       <div className="w-full lg:w-[75%] h-full">
         <div className="flex flex-col gap-2 lg:mx-0 lg:my-16 my-8 mx-6">
           <p
@@ -14,16 +19,16 @@ const Education = () => {
           >
             Education
           </p>
-          <div className="w-36 rounded-full h-1 bg-purple-600"></div>
+          <div className="w-21 rounded-full h-1 bg-purple-600"></div>
         </div>
         <div className="w-full flex justify-center">
-            <div className="w-[80%] border-2 p-8 rounded-2xl shadow-2xl flex flex-col gap-3 bg-white">
+            <div className={`w-[85%] lg:w-[80%] border-2 border-gray-300 hover:scale-105 duration-500 p-8 rounded-2xl shadow-2xl flex flex-col gap-3 ${toggle?"bg-white":"bg-neutral-800"}`}>
                 <div className="max-lg:flex-col max-lg:items-start flex justify-between items-center">
-                    <h3 className="text-xl lg:text-3xl text-neutral-00 font-extrabold tracking-wide">Bachelor of Technology (B.Tech)</h3>
+                    <h3 className={`text-xl lg:text-3xl ${toggle?"text-black":"text-white"} font-extrabold tracking-wide`}>Bachelor of Technology (B.Tech)</h3>
                     <p className="text-indigo-700 bg-indigo-200 w-fit text-xs lg:text-lg rounded-3xl px-2 py-1">2021-2025</p>
                 </div>
-                <p className="text-xl lg:text-2xl text-gray-500 font-normal">Dr.APJ Abdul Kalam Technical University, Lucknow</p>
-                <ul className="text-lg   lg:text-xl flex flex-col gap-2 list-disc pl-5 text-gray-500 font-serif">
+                <p className={`text-xl lg:text-2xl ${toggle?"text-gray-500":"text-gray-300"} font-normal`}>Dr.APJ Abdul Kalam Technical University, Lucknow</p>
+                <ul className={`text-lg   lg:text-xl flex flex-col gap-2 list-disc pl-5 ${toggle?"text-gray-500":"text-gray-300"} font-serif`}>
                     <li>Stream: Computer Science & Engineering</li>
                     <li>Graduation Year: 2025</li>
                     <li>CGPA: 7.03</li>
@@ -31,7 +36,7 @@ const Education = () => {
             </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

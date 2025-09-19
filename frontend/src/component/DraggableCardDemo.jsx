@@ -55,7 +55,7 @@ export function DraggableCardDemo(props) {
   //   },
   // ];
   return (
-    <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
+    <DraggableCardContainer className="relative flex max-lg:h-[75vh] lg:min-h-screen w-full items-center justify-center overflow-clip">
       <p className={`absolute top-1/2 mx-auto max-w-sm -translate-y-3/4 text-center text-2xl font-black ${toggle?"text-neutral-800":"text-neutral-400"} md:text-4xl `}>
         Every skill learned is a step toward a greater future.
       </p>

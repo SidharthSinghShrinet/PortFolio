@@ -17,7 +17,7 @@ const About = () => {
           <p className={`text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-wider ${toggle?"text-black":"text-white"}`}>
             About Me
           </p>
-          <div className="w-28 rounded-full h-1 bg-purple-600"></div>
+          <div className="w-20 lg:w-28 rounded-full h-1 bg-purple-600"></div>
         </div>
         <div className={`flex flex-col gap-7 ${toggle?"text-gray-700":"text-gray-300"}`}>
           <p className="text-base sm:text-lg lg:text-xl font-semibold">

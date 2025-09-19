@@ -1,5 +1,6 @@
 import ExpandableCardDemo from "@/components/expandable-card-demo-grid";
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 const Project = () => {
@@ -13,8 +14,12 @@ const Project = () => {
   },[colour]);
   // console.log(colour);
   return (
-    <div className={`min-h-screen w-full flex justify-center items-center ${toggle?"bg-gray-100":"bg-gray-900"}`}>
-      <div className="w-[87%] h-full lg:w-[75%]">
+    <motion.div className={`min-h-screen w-full flex justify-center items-center ${toggle?"bg-gray-100":"bg-neutral-900"}`}
+    initial={{opacity:0,y:250}}
+    whileInView={{opacity:1,y:0}}
+    transition={{duration:1,ease:"easeOut"}}
+    viewport={{once:true}}>
+      <div className="w-[96%] h-full lg:w-[75%]">
         <div className="flex flex-col gap-2 lg:mx-0 lg:my-16 my-8 mx-6">
           <p
             className={`text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-wider ${
@@ -23,7 +28,7 @@ const Project = () => {
           >
             Projects
           </p>
-          <div className="w-28 rounded-full h-1 bg-purple-600"></div>
+          <div className="w-19 lg:w-28 rounded-full h-1 bg-purple-600"></div>
         </div>
         <div className="w-full h-15 flex justify-center items-center gap-5">
           {projectTitle.map((title,idx)=>(
@@ -34,7 +39,7 @@ const Project = () => {
           <ExpandableCardDemo/>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

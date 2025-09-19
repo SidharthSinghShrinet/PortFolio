@@ -100,7 +100,7 @@ const Skills = () => {
 
   return (
     <motion.div
-      className={`min-h-screen flex flex-col justify-start items-center ${
+      className={`h-fit lg:min-h-screen flex flex-col justify-start items-center ${
         toggle ? "bg-white" : "bg-black"
       }`}
       initial={{opacity:0,y:250}}
@@ -117,7 +117,7 @@ const Skills = () => {
           >
             Skills
           </p>
-          <div className="w-18 rounded-full h-1 bg-purple-600"></div>
+          <div className="w-12 lg:w-18 rounded-full h-1 bg-purple-600"></div>
         </div>
         <div>
           <DraggableCardDemo items={items} />
