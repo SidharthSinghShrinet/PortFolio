@@ -28,87 +28,92 @@ const Skills = () => {
         "Hostinger",
       ],
       className:
-      "absolute top-10 left-[20%] rotate-[-5deg] flex flex-col justify-between",
+        "absolute top-10 left-[20%] rotate-[-5deg] flex flex-col justify-between",
     },
     {
       icon: <TbPlugConnected />,
       title: "API Handling & Middleware",
       items: ["Axios", "FetchAPI", "Express Validator", "Postman", "REST APIs"],
       className:
-      "absolute top-40 left-[25%] rotate-[-7deg] flex flex-col justify-between",
+        "absolute top-40 left-[25%] rotate-[-7deg] flex flex-col justify-between",
     },
     {
       icon: <MdOutlineSecurity />,
       title: "Authentication & Security",
       items: ["JSON Web Token(JWT)", "Bcrypt.js", "OAuth"],
       className:
-      "absolute top-5 left-[40%] rotate-[8deg] flex flex-col justify-between",
+        "absolute top-5 left-[40%] rotate-[8deg] flex flex-col justify-between",
     },
     {
       icon: <PiNetwork />,
       title: "Realtime & Communication",
       items: ["Websocket", "Socket.IO"],
       className:
-      "absolute top-20 right-[35%] rotate-[2deg] flex flex-col justify-between",
+        "absolute top-20 right-[35%] rotate-[2deg] flex flex-col justify-between",
     },
     {
       icon: <FaCode />,
       title: "Data Structures & Algorithms",
       items: ["JavaScript"],
       className:
-      "absolute top-24 left-[45%] rotate-[-7deg] flex flex-col justify-between",
-      },
-      {
-        icon: <BsDatabase />,
-        title: "Database",
-        items: ["MongoDB", "MySQL", "Mongoose"],
-        className:
+        "absolute top-24 left-[45%] rotate-[-7deg] flex flex-col justify-between",
+    },
+    {
+      icon: <BsDatabase />,
+      title: "Database",
+      items: ["MongoDB", "MySQL", "Mongoose"],
+      className:
         "absolute top-32 left-[55%] rotate-[10deg] flex flex-col justify-between",
-      },
-      {
-        icon: <FaServer />,
-        title: "Backend Technologies",
-        items: ["NodeJS", "ExpressJS"],
-        className:
+    },
+    {
+      icon: <FaServer />,
+      title: "Backend Technologies",
+      items: ["NodeJS", "ExpressJS"],
+      className:
         "absolute top-8 left-[30%] rotate-[4deg] flex flex-col justify-between",
-      },
-      {
-        icon: <FaReact />,
-        title: "Frontend Technologies",
-        items: [
-          "HTML",
-          "CSS",
-          "ReactJS",
-          "Redux",
-          "Tailwind CSS",
-          "Bootstrap",
-          "Shadcn",
-        "Framer Motion",
+    },
+    {
+      icon: <FaReact />,
+      title: "Frontend Technologies",
+      items: [
+        "HTML",
+        "CSS",
+        "ReactJS",
+        "Redux",
+        "Tailwind CSS",
+        "Bootstrap",
         "TypeScript",
+        "Framer Motion",
+        "GSAP",
+        "Shadcn",
+        "Material UI",
+        "Chakra UI"
       ],
       className:
-      "absolute top-5 left-[35%] rotate-[-7deg] flex flex-col justify-between",
+        "absolute top-5 left-[35%] rotate-[-7deg] flex flex-col justify-between",
     },
     {
       icon: <IoCode />,
       title: "Programming Language",
       items: ["JavaScript(ES5,ES6)", "Python", "C Language"],
       className:
-      "absolute top-5 left-[40%] rotate-[8deg] flex flex-col justify-between",
+        "absolute top-5 left-[40%] rotate-[8deg] flex flex-col justify-between",
     },
   ];
 
   return (
     <motion.div
+      id="skills"
+      style={{ scrollMarginTop: "65px",scrollBehavior:"smooth" }}
       className={`h-fit lg:min-h-screen flex flex-col justify-start items-center ${
         toggle ? "bg-white" : "bg-black"
       }`}
-      initial={{opacity:0,y:250}}
-      whileInView={{opacity:1,y:0}}
-      transition={{duration:1,ease:"easeOut"}}
-      viewport={{once:true}}
+      initial={{ opacity: 0, y: 250 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      viewport={{ once: true }}
     >
-      <div className="w-[75%] max-lg:w-full">
+      <div id="skills" className="w-[75%] max-lg:w-full">
         <div className="flex flex-col gap-2 lg:mx-0 lg:my-16 my-8 mx-6">
           <p
             className={`text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-wider ${

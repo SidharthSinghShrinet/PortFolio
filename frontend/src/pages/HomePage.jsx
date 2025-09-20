@@ -16,8 +16,12 @@ const HomePage = () => {
   let toggle = useSelector((state) => state.global.toggle);
   let open = useSelector((state) => state.global.open);
   return (
-    <>
-      <div className="relative w-full flex justify-center items-center max-md:h-screen">
+    <div className="scroll-smooth">
+      <div
+        id="home"
+        style={{ scrollMarginTop: "65px", scrollBehavior:"smooth" }}
+        className="relative w-full flex justify-center items-center max-md:h-screen"
+      >
         {open ? <AnchorTemporaryDrawer /> : null}
         <BackgroundBeamsWithCollision />
         <div
@@ -38,7 +42,7 @@ const HomePage = () => {
             >
               SIDHARTH SINGH
             </h2>
-            <div className="text-xl tracking-wider font-semibold flex items-center">
+            <div className="text-xl lg:text-xl tracking-wider font-semibold flex items-center">
               <p
                 className={`${toggle ? "text-purple-800" : "text-purple-500"}`}
               >
@@ -71,13 +75,13 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <About/>
-      <Skills/>
-      <Project/>
-      <Education/>
-      <Contact/>
-      <Footer/>
-    </>
+      <About />
+      <Skills />
+      <Project />
+      <Education />
+      <Contact />
+      <Footer />
+    </div>
   );
 };
 

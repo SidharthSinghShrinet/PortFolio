@@ -14,7 +14,7 @@ import { BrowserRouter, Routes,Route } from 'react-router-dom'
 const App = () => {
   const toggle = useSelector((state)=>state.global.toggle);
   return (
-    <div className={`relative min-h-screen flex flex-col`}>
+    <div className={`relative min-h-screen flex flex-col ${toggle?"bg-white":"bg-black"}`}>
       <ToastContainer position='top-center' theme={toggle?"light":"dark"}/>
       <BrowserRouter>
       <Navbar/>

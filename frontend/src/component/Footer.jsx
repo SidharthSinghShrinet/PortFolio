@@ -1,6 +1,7 @@
 import React from 'react'
 import { FiGithub } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 const Footer = () => {
     const toggle = useSelector((state)=>state.global.toggle);
@@ -9,8 +10,8 @@ const Footer = () => {
         <div className='w-[87%] h-full flex flex-col justify-center items-center gap-3'>
             <p className='text-md tracking-wide'>Built with ❤️ by Sidharth</p>
             <div className='flex gap-2'>
-                <div className='p-2 rounded-full hover:scale-110 duration-400'><FiGithub/></div>
-                <div className='p-2 rounded-full hover:scale-110 duration-400'><FaLinkedinIn/></div>
+                <div className='p-2 rounded-full hover:scale-110 duration-400 cursor-pointer'><Link to={"https://github.com/SidharthSinghShrinet"} target='_blank'><FiGithub/></Link></div>
+                <div className='p-2 rounded-full hover:scale-110 duration-400 cursor-pointer'><Link to={"http://linkedin.com/in/sidharth-singh-b3aaa623b"} target='_blank'><FaLinkedinIn/></Link></div>
             </div>
             <p className='text-sm tracking-wider'>© 2025 Sidharth Singh. All rights reserved.</p>
         </div>

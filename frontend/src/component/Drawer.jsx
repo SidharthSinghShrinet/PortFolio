@@ -1,81 +1,93 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import { ImCross } from "react-icons/im";
+import MenuIcon from "@mui/icons-material/Menu";
+import { IoIosHome } from "react-icons/io";
+import { IoIosInformationCircleOutline } from "react-icons/io";
+import { FaBookOpen } from "react-icons/fa";
+import { MdWork } from "react-icons/md";
+import { PiStudent } from "react-icons/pi";
+import { MdContactPhone } from "react-icons/md";
+import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
-export default function AnchorTemporaryDrawer() {
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
+export default function TemporaryDrawer() {
+  const [open, setOpen] = React.useState(false);
+  const toggle = useSelector((state)=>state.global.toggle);
+  const listItems = [
+    {
+        text:"Home",
+        comp:<IoIosHome/>,
+        id:"home"
+    },
+    {
+        text:"About",
+        comp:<IoIosInformationCircleOutline/>,
+        id:"about"
+    },
+    {
+        text:"Skills",
+        comp:<FaBookOpen/>,
+        id:"skills"
+    },
+    {
+        text:"Projects",
+        comp:<MdWork/>,
+        id:"projects"
+    },
+    {
+        text:"Education",
+        comp:<PiStudent/>,
+        id:"education"
+    },
+    {
+        text:"Contact",
+        comp:<MdContactPhone/>,
+        id:"contact"
     }
-
-    setState({ ...state, [anchor]: open });
+  ];
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
   };
 
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+  function handleClick(id){
+    setOpen(false);
+    const section = document.getElementById(id);
+    if(section){
+        section.scrollIntoView({behavior:"smooth"})
+    }
+  }
+  const DrawerList = (
+    <Box sx={{ width: 300, height:"100%" , background:toggle?"white":"black", color:toggle?"black":"white"}} role="presentation" onClick={toggleDrawer(false)}>
+      <div className="flex justify-between items-center font-bold tracking-wider">
+        <p className="text-2xl pl-1.5 py-3"><span className={`${toggle?"text-black":"text-purple-500"}`}>S</span>iDHArt<span className={`${toggle?"text-black":"text-purple-500"}`}>H</span></p>
+        <div className="pr-2.5 text-lg font-bold cursor-pointer"><ImCross/></div>
+      </div>
+      <Divider/>
+      <div className="mt-2">
+        {listItems.length===0?"Loading...":(
+        listItems.map((item,idx)=>(
+            <div key={idx} onClickCapture={()=>handleClick(item.id)} className="flex justify-start items-center text-2xl gap-3 py-2 px-0.5">
+                <div className="cursor-pointer">{item.comp}</div>
+                <p className="cursor-pointer hover:underline">{item.text}</p>
+            </div>
+        ))
+      )}
+      </div>
     </Box>
   );
 
   return (
     <div>
-      {['left', 'right', 'top', 'bottom'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
+      <button onClick={toggleDrawer(true)}>
+        <MenuIcon />
+      </button>
+      <Drawer open={open} onClose={toggleDrawer(false)}>
+        {DrawerList}
+      </Drawer>
     </div>
   );
 }

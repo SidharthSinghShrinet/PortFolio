@@ -5,7 +5,8 @@ import { motion } from 'framer-motion'
 const Education = () => {
   const toggle = useSelector((state) => state.global.toggle);
   return (
-    <motion.div className={`min-h-[55vh] w-full flex justify-center ${toggle?"bg-neutral-200":"bg-black"} pb-10 lg:pb-25`}
+    <motion.div id="education"
+      style={{ scrollMarginTop: "65px", scrollBehavior:"smooth" }} className={`min-h-[55vh] w-full flex justify-center ${toggle?"bg-neutral-200":"bg-black"} pb-10 lg:pb-25`}
     initial={{opacity:0,y:250}}
     whileInView={{opacity:1,y:0}}
     transition={{duration:1,ease:"easeOut"}}

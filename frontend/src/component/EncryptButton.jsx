@@ -67,7 +67,7 @@ const EncryptButton = () => {
     >
       <div className="relative z-10 flex items-center gap-2">
         <FaRegFilePdf/>
-        <span>{text}</span>
+        <span><a href="Resume.pdf" download="Resume.pdf">{text}</a></span>
       </div>
       <motion.span
         initial={{

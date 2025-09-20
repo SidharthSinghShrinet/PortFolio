@@ -1,10 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 
 const Example = () => {
   return (
     <div className="grid place-content-center">
-      <DrawOutlineButton>Hire Me</DrawOutlineButton>
+      <DrawOutlineButton><Link to={"https://linkedin.com/in/sidharth-singh-b3aaa623b"} target="_blank">Hire Me</Link></DrawOutlineButton>
     </div>
   );
 };

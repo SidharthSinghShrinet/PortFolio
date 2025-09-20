@@ -44,7 +44,7 @@ export default function ExpandableCardDemo() {
       </AnimatePresence>
       <AnimatePresence>
         {active && typeof active === "object" ? (
-          <div className="fixed inset-0  grid place-items-center z-[100]">
+          <div className="fixed inset-0 grid place-items-center z-[1200]">
             <motion.button
               key={`button-${active.title}-${id}`}
               layout
@@ -68,7 +68,7 @@ export default function ExpandableCardDemo() {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className={`w-full max-w-[500px] h-full md:h-fit md:max-h-[90%]  flex flex-col ${toggle?"bg-gray-200":"bg-black"}  sm:rounded-3xl overflow-hidden`}
+              className={`w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col ${toggle?"bg-gray-200":"bg-black"}  sm:rounded-3xl overflow-hidden`}
             >
               <motion.div layoutId={`image-${active.title}-${id}`}>
                 <img
@@ -249,7 +249,7 @@ const cards = [
     title: "E-Commerce (bitBasket)",
     src: "../src/assets/ecommerce.png",
     ctaText: "Visit",
-    ctaLink: "https://ui.aceternity.com/templates",
+    ctaLink: "https://github.com/SidharthSinghShrinet/bitBasket",
     content: () => {
       return (
         <p>
@@ -309,7 +309,7 @@ const cards = [
     title: "Personal Portfolio",
     src: "../src/assets/portfolio.png",
     ctaText: "Visit",
-    ctaLink: "https://ui.aceternity.com/templates",
+    ctaLink: "https://github.com/SidharthSinghShrinet/PortFolio",
     content: () => {
       return (
         <p>
@@ -350,7 +350,7 @@ const cards = [
     title: "Zomato Clone",
     src: "../src/assets/zomato.png",
     ctaText: "Visit",
-    ctaLink: "https://ui.aceternity.com/templates",
+    ctaLink: "https://zomato-clone-eta-black.vercel.app/",
     content: () => {
       return (
         <p>
