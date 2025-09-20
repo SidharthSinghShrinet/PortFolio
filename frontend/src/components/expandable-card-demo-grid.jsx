@@ -4,6 +4,10 @@ import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import { useSelector } from "react-redux";
+import chatapp from "../assets/chatapp.png";
+import ecommerce from '../assets/ecommerce.png';
+import zomato from '../assets/zomato.png';
+import portfolio from '../assets/portfolio.png';
 
 export default function ExpandableCardDemo() {
   const [active, setActive] = useState(null);
@@ -204,7 +208,7 @@ const cards = [
   {
     description: "",
     title: "ChatApp",
-    src: "../src/assets/chatapp.png",
+    src: chatapp,
     ctaText: "Visit",
     ctaLink: "https://chatapp-mern-3xqn.onrender.com/login",
     content: () => {
@@ -247,7 +251,7 @@ const cards = [
   {
     description: "",
     title: "E-Commerce (bitBasket)",
-    src: "../src/assets/ecommerce.png",
+    src: ecommerce,
     ctaText: "Visit",
     ctaLink: "https://github.com/SidharthSinghShrinet/bitBasket",
     content: () => {
@@ -307,7 +311,7 @@ const cards = [
   {
     description: "",
     title: "Personal Portfolio",
-    src: "../src/assets/portfolio.png",
+    src: portfolio,
     ctaText: "Visit",
     ctaLink: "https://github.com/SidharthSinghShrinet/PortFolio",
     content: () => {
@@ -348,7 +352,7 @@ const cards = [
   {
     description: "",
     title: "Zomato Clone",
-    src: "../src/assets/zomato.png",
+    src: zomato,
     ctaText: "Visit",
     ctaLink: "https://zomato-clone-eta-black.vercel.app/",
     content: () => {

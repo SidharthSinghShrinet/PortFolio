@@ -11,6 +11,7 @@ import Project from "./Project";
 import Education from "./Education";
 import Contact from "./Contact";
 import Footer from "@/component/Footer";
+import profile1 from "../assets/profile1.png"
 
 const HomePage = () => {
   let toggle = useSelector((state) => state.global.toggle);
@@ -68,7 +69,7 @@ const HomePage = () => {
               className={`border-5 rounded-[50%] ${
                 toggle ? "border-purple-400" : "border-gray-300"
               }`}
-              src="../../src/assets/profile1.png"
+              src={profile1}
               alt=""
               width={400}
             />
