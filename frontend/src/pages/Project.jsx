@@ -8,11 +8,12 @@ const Project = () => {
   const projectTitle = ["All", "Full Stack", "Frontend", "Backend"];
   const [colour, setColour] = useState(0);
   const [targetColour, setTargetColour] = useState("");
+  // console.log(targetColour)
   useEffect(() => {
     let filterColour = projectTitle[colour];
+    // console.log(filterColour);
     setTargetColour(filterColour);
-  }, [colour]);
-  // console.log(colour);
+  }, [targetColour,colour]);
   return (
     <motion.div
       id="projects"
@@ -25,7 +26,7 @@ const Project = () => {
       transition={{ duration: 1, ease: "easeOut" }}
       viewport={{ once: true }}
     >
-      <div className="w-[96%] h-full lg:w-[75%]">
+      <div className="w-[96%] min-h-screen lg:w-[75%]">
         <div className="flex flex-col gap-2 lg:mx-0 lg:my-16 my-8 mx-6">
           <p
             className={`text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-wider ${
@@ -40,9 +41,9 @@ const Project = () => {
           {projectTitle.map((title, idx) => (
             <div
               key={idx}
-              onClick={() => setColour(idx)}
+              onClick={()=>setColour(idx)}
               className={`border-1 border-black px-2 lg:px-4 py-1 rounded-4xl ${
-                targetColour === title
+                targetColour == title
                   ? "bg-purple-800 text-white"
                   : "bg-gray-600 text-white"
               } cursor-pointer`}
@@ -52,7 +53,7 @@ const Project = () => {
           ))}
         </div>
         <div className="w-full h-fit pb-5">
-          <ExpandableCardDemo />
+          <ExpandableCardDemo colour={colour}/>
         </div>
       </div>
     </motion.div>

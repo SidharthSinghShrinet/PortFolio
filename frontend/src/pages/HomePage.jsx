@@ -11,7 +11,7 @@ import Project from "./Project";
 import Education from "./Education";
 import Contact from "./Contact";
 import Footer from "@/component/Footer";
-import profile1 from "../assets/profile1.png"
+import profile1 from "../assets/profile1.png";
 
 const HomePage = () => {
   let toggle = useSelector((state) => state.global.toggle);
@@ -20,7 +20,7 @@ const HomePage = () => {
     <div className="scroll-smooth">
       <div
         id="home"
-        style={{ scrollMarginTop: "65px", scrollBehavior:"smooth" }}
+        style={{ scrollMarginTop: "65px", scrollBehavior: "smooth" }}
         className="relative w-full flex justify-center items-center max-md:h-screen"
       >
         {open ? <AnchorTemporaryDrawer /> : null}
@@ -64,14 +64,12 @@ const HomePage = () => {
               <Example />
             </div>
           </div>
-          <div>
+          <div className="profile-border">
             <img
-              className={`border-5 rounded-[50%] ${
-                toggle ? "border-purple-400" : "border-gray-300"
-              }`}
+              className="rounded-full object-cover"
               src={profile1}
-              alt=""
               width={400}
+              alt="profile"
             />
           </div>
         </div>

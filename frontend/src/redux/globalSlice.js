@@ -4,15 +4,11 @@ const globalSlice = createSlice({
     name:"global",
     initialState:{
         toggle:true,
-        // open:false,
     },
     reducers:{
         setToggle:(state,action)=>{
             state.toggle = action.payload
         },
-        // setOpen:(state,action)=>{
-        //     state.open = action.payload
-        // }
     }
 })
 

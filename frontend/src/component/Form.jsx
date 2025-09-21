@@ -13,7 +13,7 @@ const Form = () => {
     "Message":""
   });
   let [result,setResult] = useState("");
-  console.log(result);
+  // console.log(result);
   function handleChange(e){
     let {name,value} = e.target;
     setUserData({...userData,[name]:value})

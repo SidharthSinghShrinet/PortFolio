@@ -9,12 +9,13 @@ import ecommerce from '../assets/ecommerce.png';
 import zomato from '../assets/zomato.png';
 import portfolio from '../assets/portfolio.png';
 
-export default function ExpandableCardDemo() {
+export default function ExpandableCardDemo({colour}) {
   const [active, setActive] = useState(null);
   const toggle = useSelector((state)=>state.global.toggle);
+  const filterType = ["All","Full Stack","Frontend","Backend"];
   const id = useId();
   const ref = useRef(null);
-
+  // console.log(filterType[colour]);
   useEffect(() => {
     function onKeyDown(event) {
       if (event.key === "Escape") {
@@ -133,7 +134,8 @@ export default function ExpandableCardDemo() {
       </AnimatePresence>
       <ul className="max-w-full mx-auto w-full grid grid-cols-1 md:grid-cols-3 items-start gap-4">
         {cards.map((card, index) => (
-          <motion.div
+          card.filters.includes(filterType[colour])?(
+            <motion.div
             layoutId={`card-${card.title}-${id}`}
             key={card.title}
             onClick={() => setActive(card)}
@@ -165,6 +167,7 @@ export default function ExpandableCardDemo() {
               </div>
             </div>
           </motion.div>
+          ):""
         ))}
       </ul>
     </>
@@ -207,6 +210,7 @@ export const CloseIcon = () => {
 const cards = [
   {
     description: "",
+    filters:["All","Full Stack","Backend"],
     title: "ChatApp",
     src: chatapp,
     ctaText: "Visit",
@@ -250,6 +254,7 @@ const cards = [
   },
   {
     description: "",
+    filters:["All","Full Stack","Backend"],
     title: "E-Commerce (bitBasket)",
     src: ecommerce,
     ctaText: "Visit",
@@ -310,10 +315,11 @@ const cards = [
   },
   {
     description: "",
+    filters:["All","Frontend"],
     title: "Personal Portfolio",
     src: portfolio,
     ctaText: "Visit",
-    ctaLink: "https://github.com/SidharthSinghShrinet/PortFolio",
+    ctaLink: "https://port-folio-six-liart.vercel.app/",
     content: () => {
       return (
         <p>
@@ -351,6 +357,7 @@ const cards = [
   },
   {
     description: "",
+    filters:["All","Frontend"],
     title: "Zomato Clone",
     src: zomato,
     ctaText: "Visit",

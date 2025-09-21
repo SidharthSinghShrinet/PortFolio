@@ -155,3 +155,63 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #1d4ed8;      /* Tailwind blue-700 */
 }
+
+.profile-border {
+  position: relative;
+  border-radius: 50%;
+  padding: 6px;     /* thickness of border */
+  box-sizing: border-box;
+  z-index: 0;
+}
+
+/* gradient border */
+.profile-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 6px; /* same as container padding */
+  background: linear-gradient(
+    45deg,
+    #fff,
+    #ffffffc1,
+    #924ffdc7,
+    #000,
+    #ffffff53,
+    #622dcd,
+    #fff,
+    #ffffffc1,
+    #924ffdc7,
+    #ffffff53,
+    #622dcd,
+    #000
+  );
+  background-size: 400%;
+  animation: steam 20s linear infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude; 
+  z-index: -1;
+}
+
+.profile-border img {
+  border-radius: 50%;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes steam {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
