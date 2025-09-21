@@ -22,50 +22,18 @@ This project leverages a wide range of modern tools and libraries:
 - **Other Tools**: Aceternity (utility/enhancement tools)
 
 ## 📁 Project Structure
-PortFolio/
-│
-├── public/
-│   └── vite.svg               # Main HTML template
-│   └── Resume.svg
-├── src/
-│   ├── assets/                  # Images, icons, fonts, logos, etc.
-│   │   ├── images/
-│   │   └── logos/
-│   │
-│   ├── components/              # Reusable React components
-│   │   ├── Header.jsx
-│   │   ├── Footer.jsx
-│   │   ├── Navbar.jsx
-│   │   └── ...other components
-│   │
-│   ├── pages/                   # Different pages of the portfolio
-│   │   ├── Home.jsx
-│   │   ├── About.jsx
-│   │   ├── Projects.jsx
-│   │   └── Contact.jsx
-│   │
-│   ├── redux/                   # Redux setup
-│   │   ├── store.js
-│   │   ├── slices/
-│   │   │   └── toggleSlice.js
-│   │   └── ...other slices
-│   │
-│   ├── styles/                  # Global CSS / Tailwind configs
-│   │   ├── index.css
-│   │   └── tailwind.css
-│   │
-│   ├── utils/                   # Helper functions, API calls, etc.
-│   │   └── formHandler.js
-│   │
-│   ├── App.jsx                  # Main React app
-│   └── main.jsx                 # Entry point for React
-│
-├── .gitignore
-├── package.json
-├── vite.config.js
-├── tailwind.config.js
-└── README.md
 
+📁 ChatApp/  
+ 
+├── 📁 frontend/               # React client  
+│   ├── 📄 package.json  
+│   └── 📁 src/  
+│       ├── 📄 App.js  
+│       ├── 📁 components/     # UI components  
+│       ├── 📁 pages/          # Auth & Chat pages  
+│       └── 📁 context/        # State management  
+│  
+└── 📄 README.md  
 
 ## ✨ Features
 
