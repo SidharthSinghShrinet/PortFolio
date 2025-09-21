@@ -23,16 +23,32 @@ This project leverages a wide range of modern tools and libraries:
 
 ## 📁 Project Structure
 
-📁 ChatApp/  
+📁 Portfolio/  
  
-├── 📁 frontend/               # React client  
+├── 📁 frontend/              
 │   ├── 📄 package.json  
+│   └── 📄 package-lock.json
+│   └── 📁public
+│        ├── 📄 vite.svg
+│        └── 📄 Resume.pdf    # Resume File
 │   └── 📁 src/  
-│       ├── 📄 App.js  
-│       ├── 📁 components/     # UI components  
-│       ├── 📁 pages/          # Auth & Chat pages  
-│       └── 📁 context/        # State management  
-│  
+│       ├── 📁 assets/      # Images
+│       ├── 📁 hooks/
+│       ├── 📁 lib/
+│       ├── 📄 App.jsx
+│       ├── 📄 main.jsx
+│       ├── 📄 index.css
+│       ├── 📁 component/        # components
+│       ├── 📁 components/ui     # UI components  
+│       ├── 📁 pages/          # Home, About, Contact Pages etc...  
+│       ├── 📁 Routes/       # Routing
+│       └── 📁 redux/      # State management
+│   └── 📄 components.json
+│   └── 📄 eslint.config.js
+│   └── 📄 index.html
+│   └── 📄 vite.config.js
+│   └── 📄 jsconfig.json
+│
 └── 📄 README.md  
 
 ## ✨ Features
@@ -54,14 +70,9 @@ I am **Sidharth Singh**, a dedicated **Frontend, Backend, Full-Stack, Web, and S
 
 Feel free to reach out for collaborations, questions, or opportunities:
 
-- **Email**: [your-email@example.com](mailto:your-email@example.com)  
-- **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/your-profile/)  
-- **GitHub**: [Your GitHub Profile](https://github.com/your-username)
-
-## 📝 License
-
-This project is licensed under the MIT License.  
-See the [LICENSE](LICENSE) file for details.
+- **Email**: [tushar15464@gmail.com](mailto:tushar15464@gmail.com)  
+- **LinkedIn**: [www.linkedin.com/in/sidharth-singh-b3aaa623b](www.linkedin.com/in/sidharth-singh-b3aaa623b)  
+- **GitHub**: [https://github.com/SidharthSinghShrinet/](https://github.com/SidharthSinghShrinet/PortFolio)
 
 ---
 
@@ -73,3 +84,4 @@ See the [LICENSE](LICENSE) file for details.
 ![Framer Motion](https://img.shields.io/badge/Framer%20Motion-0055FF?style=for-the-badge)  
 ![Material UI](https://img.shields.io/badge/Material%20UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white)  
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Aceternity](https://img.shields.io/badge/Aceternity_UI-00BFFF?style=for-the-badge&logo=aceternity&logoColor=white)
