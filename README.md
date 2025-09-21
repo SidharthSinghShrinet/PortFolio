@@ -23,33 +23,33 @@ This project leverages a wide range of modern tools and libraries:
 
 ## 📁 Project Structure
 
-📁 Portfolio/  
- 
-├── 📁 frontend/              
-│   ├── 📄 package.json  
-│   └── 📄 package-lock.json
-│   └── 📁public
-│        ├── 📄 vite.svg
-│        └── 📄 Resume.pdf    # Resume File
-│   └── 📁 src/  
-│       ├── 📁 assets/      # Images
-│       ├── 📁 hooks/
-│       ├── 📁 lib/
-│       ├── 📄 App.jsx
-│       ├── 📄 main.jsx
-│       ├── 📄 index.css
-│       ├── 📁 component/        # components
-│       ├── 📁 components/ui     # UI components  
-│       ├── 📁 pages/          # Home, About, Contact Pages etc...  
-│       ├── 📁 Routes/       # Routing
-│       └── 📁 redux/      # State management
-│   └── 📄 components.json
-│   └── 📄 eslint.config.js
-│   └── 📄 index.html
-│   └── 📄 vite.config.js
-│   └── 📄 jsconfig.json
-│
-└── 📄 README.md  
+```
+PortFolio/
+├── 📄 README.md
+└── 📁 frontend/
+    ├── 📦 package.json
+    ├── 📦 package-lock.json
+    ├── 📁 public/
+    │   ├── 🖼️ vite.svg
+    │   └── 📄 Resume.pdf        # Resume File
+    ├── 📁 src/
+    │   ├── 🖼️ assets/           # Images and static assets
+    │   ├── 🪝 hooks/            # Custom React hooks
+    │   ├── 🧩 lib/              # Utility libraries/helpers
+    │   ├── ⚛️ App.jsx
+    │   ├── ⚛️ main.jsx
+    │   ├── 🎨 index.css
+    │   ├── 🧩 component/        # Feature components
+    │   ├── 🧱 components/ui/    # UI components (buttons, inputs, etc.)
+    │   ├── 📄 pages/            # Page components (Home, About, Contact, etc.)
+    │   ├── 🔀 Routes/           # Application routes
+    │   └── 🗃️ redux/            # State management (Redux)
+    ├── 📄 components.json
+    ├── 🧹 eslint.config.js
+    ├── 📝 index.html
+    ├── ⚡ vite.config.js
+    └── 🧭 jsconfig.json
+```
 
 ## ✨ Features
 
