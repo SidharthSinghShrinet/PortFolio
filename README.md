@@ -4,10 +4,10 @@ Hi, I’m Sidharth Singh — a passionate Frontend, Backend, Full-Stack, Web, an
 
 I specialize in building modern, responsive, and user-friendly applications by combining creativity with robust technical expertise. From crafting engaging UI/UX designs to managing complex backend systems, I enjoy working across the entire development stack.
 
--- On the Frontend, I focus on React, Redux, Tailwind CSS, Framer Motion, and Material UI to create seamless, interactive, and visually appealing experiences.
--- On the Backend, I work with Node.js, Express, and database systems to develop scalable and secure solutions.
--- As a Full-Stack Developer, I bridge the gap between client-side and server-side, ensuring smooth integrations and performance.
--- Beyond web apps, I explore software development practices, problem-solving, and innovative tools to stay ahead in the tech world.
+- On the Frontend, I focus on React, Redux, Tailwind CSS, Framer Motion, and Material UI to create seamless, interactive, and visually appealing experiences.
+- On the Backend, I work with Node.js, Express, and database systems to develop scalable and secure solutions.
+- As a Full-Stack Developer, I bridge the gap between client-side and server-side, ensuring smooth integrations and performance.
+- Beyond web apps, I explore software development practices, problem-solving, and innovative tools to stay ahead in the tech world.
 
 I’m constantly learning, improving, and pushing my limits to deliver high-quality solutions. My goal is to create applications that not only work efficiently but also leave a lasting impact on users.
 
