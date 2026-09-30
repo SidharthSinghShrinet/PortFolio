@@ -81,7 +81,9 @@ export function useGitHubData(username = PERSONAL_INFO.githubUsername || "Sidhar
       try {
         if (!initialCache) setLoading(true);
 
-        const fetchOptions = { signal: controller.signal };
+        const ghToken = import.meta.env.VITE_GITHUB_TOKEN;
+        const headers = ghToken ? { Authorization: `Bearer ${ghToken}` } : {};
+        const fetchOptions = { signal: controller.signal, headers };
 
         // Fetch User Profile, Repositories, and Contributions in parallel
         const [userRes, reposRes, contribRes] = await Promise.allSettled([

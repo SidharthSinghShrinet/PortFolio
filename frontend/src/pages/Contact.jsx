@@ -5,6 +5,7 @@ import { FiGithub } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Form from "@/component/Form";
+import { PERSONAL_INFO } from "../data/portfolioData";
 
 const Contact = () => {
   const toggle = useSelector((state) => state.global.toggle);
@@ -33,11 +34,11 @@ const Contact = () => {
             </h3>
             <div className="flex flex-col gap-0.5">
               <p className={`${toggle?"text-gray-600":"text-gray-200"} tracking-wide`}>Email</p>
-              <p className={`${toggle?"text-black":"text-gray-400"}`}>tushar15464@gmail.com</p>
+              <p className={`${toggle?"text-black":"text-gray-400"}`}>{PERSONAL_INFO.email}</p>
             </div>
             <div className="flex flex-col gap-0.5">
               <p className={`${toggle?"text-gray-600":"text-gray-200"} tracking-wide`}>Phone</p>
-              <p className={`${toggle?"text-black":"text-gray-400"}`}>9936474728</p>
+              <p className={`${toggle?"text-black":"text-gray-400"}`}>{PERSONAL_INFO.phone}</p>
             </div>
             <div className="flex flex-col gap-1.5">
               <p className={`${toggle?"text-gray-600":"text-gray-200"} tracking-wide`}>Social Profiles</p>

@@ -31,6 +31,13 @@ export default function ContactForm({ onActionClick }) {
       return;
     }
 
+    const accessKey = PERSONAL_INFO.web3FormsAccessKey || import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+    if (!accessKey) {
+      setStatus("error");
+      setStatusMsg(`Contact key is missing in .env. Please email directly to ${PERSONAL_INFO.email}`);
+      return;
+    }
+
     setStatus("submitting");
     setStatusMsg("");
 
@@ -42,7 +49,7 @@ export default function ContactForm({ onActionClick }) {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: PERSONAL_INFO.web3FormsAccessKey || "370106ef-912e-4c6e-80fc-d90c4730ce30",
+          access_key: accessKey,
           name: formData.name.trim(),
           email: formData.email.trim(),
           message: formData.message.trim(),
@@ -68,7 +75,7 @@ export default function ContactForm({ onActionClick }) {
     } catch (err) {
       console.error("Web3Forms error:", err);
       setStatus("error");
-      setStatusMsg("Network error. Please email directly to tushar15464@gmail.com");
+      setStatusMsg(`Network error. Please email directly to ${PERSONAL_INFO.email}`);
     }
   };
 
