@@ -133,12 +133,10 @@ export default function CommandPalette({
     {
       group: "Live Deployments",
       id: "proj-portfoliov2",
-      label: "Portfolio v2.6 — Interactive Platform (Active / Localhost)",
-      hint: "main-V2",
-      icon: <ExternalLink className="w-3.5 h-3.5" />,
-      run: () => {
-        document.querySelector("#portfoliov2")?.scrollIntoView({ behavior: "smooth" });
-      },
+      label: "Portfolio v2.6 — Interactive Platform (Production on Vercel)",
+      hint: "vercel.app",
+      icon: <ExternalLink className="w-3.5 h-3.5 text-emerald-400" />,
+      run: () => window.open(PERSONAL_INFO.portfolioV2Url, "_blank"),
     },
     {
       group: "Live Deployments",
@@ -151,8 +149,8 @@ export default function CommandPalette({
     {
       group: "Live Deployments",
       id: "proj-portfoliov1",
-      label: "Portfolio v1.0 — Previous Portfolio Archive",
-      hint: "port-folio-v1",
+      label: "Portfolio v1.0 — Foundational Portfolio Archive",
+      hint: "vercel.app",
       icon: <ExternalLink className="w-3.5 h-3.5" />,
       run: () => window.open(PERSONAL_INFO.portfolioV1Url, "_blank"),
     },

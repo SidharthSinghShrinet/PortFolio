@@ -319,7 +319,7 @@ const cards = [
     title: "Personal Portfolio",
     src: portfolio,
     ctaText: "Visit",
-    ctaLink: "https://port-folio-six-liart.vercel.app/",
+    ctaLink: "https://sidharth-singh-portfolio.vercel.app/",
     content: () => {
       return (
         <p>

@@ -182,17 +182,17 @@ export default function Projects({ onActionClick, openPalette }) {
                   <div className="ctas">
                     {project.id === "portfoliov2" ? (
                       <>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            if (onActionClick) onActionClick();
-                            window.scrollTo({ top: 0, behavior: "smooth" });
-                          }}
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={handleInteractiveClick}
                           className="btn btn-primary"
                         >
                           <Zap className="w-3.5 h-3.5 text-emerald-300" />
-                          <span>Active Platform (Localhost)</span>
-                        </button>
+                          <span>Live Production (Vercel)</span>
+                          <ArrowUpRight className="arrow w-3.5 h-3.5" />
+                        </a>
 
                         <button
                           type="button"

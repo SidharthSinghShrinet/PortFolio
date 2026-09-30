@@ -279,9 +279,10 @@ export default function InteractiveTerminal({ onActionClick }) {
       } else if (target === "portfolio_evolution.md" || target === "portfolio" || target === "portfoliov2" || target === "v2") {
         outputLines = [
           "[PORTFOLIO v2.6 vs v1.0 ARCHITECTURAL EVOLUTION]",
-          "  v2.6 Highlights : 3D Canvas Particle Mesh, UNIX Shell Kernel, GitHub REST API Live Stream,",
+          "  v2.6 Live       : https://sidharth-singh-portfolio-v2.vercel.app/ (Production Platform)",
+          "  v1.0 Baseline   : https://sidharth-singh-portfolio.vercel.app/ (Original React.js + Vite Archive)",
+          "  Highlights      : 3D Canvas Particle Mesh, UNIX Shell Kernel, GitHub REST API Live Stream,",
           "                   Web Audio Synthesizer, ⌘K Command Palette, Dynamic OKLCH Theming (+8 upgrades).",
-          "  v1.0 Baseline   : https://port-folio-six-liart.vercel.app/ (Original React.js + Vite Archive)",
         ];
       } else if (target === "resume.pdf" || target === "resume") {
         outputLines = [`Opening official resume: ${PERSONAL_INFO.resumeUrl}`];
@@ -474,10 +475,10 @@ export default function InteractiveTerminal({ onActionClick }) {
         "4. Qugenie Automotive ERP (Dealership Management System)",
         "   Scale  : 19 sales + 9 HR/Admin submodules, RBAC for 700+ daily staff",
         "5. Personal Portfolio v2.6 — Interactive Engineering Platform [CURRENT]",
-        "   Live   : Active Session (Localhost)",
+        "   Live   : https://sidharth-singh-portfolio-v2.vercel.app/",
         "   GitHub : https://github.com/SidharthSinghShrinet/PortFolio/tree/main-V2 (branch: main-V2)",
         "6. Personal Portfolio v1.0 — Foundational Developer Showcase [ARCHIVE]",
-        "   Live   : https://port-folio-six-liart.vercel.app/",
+        "   Live   : https://sidharth-singh-portfolio.vercel.app/",
         "   GitHub : https://github.com/SidharthSinghShrinet/PortFolio/tree/main (branch: main)",
         "7. Zomato Clone — Food Discovery UI/UX [LIVE]",
         "   Live   : https://zomato-clone-eta-black.vercel.app/",

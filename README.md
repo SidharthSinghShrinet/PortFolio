@@ -11,10 +11,15 @@ I specialize in building modern, responsive, and user-friendly applications by c
 
 I’m constantly learning, improving, and pushing my limits to deliver high-quality solutions. My goal is to create applications that not only work efficiently but also leave a lasting impact on users.
 
-## 🚀 Live Demo
+## 🚀 Live Production Platforms
 
-Check out the live portfolio here:  
-🔗 [https://port-folio-six-liart.vercel.app/](https://port-folio-six-liart.vercel.app/)
+- **Portfolio v2.6 (Current High-Tech Engineering Platform)**:  
+  🔗 [https://sidharth-singh-portfolio-v2.vercel.app/](https://sidharth-singh-portfolio-v2.vercel.app/)  
+  *(Branch: `main-V2` · Features 3D Canvas Particle Mesh, UNIX Shell Kernel, Live GitHub Telemetry, ⌘K Command Palette, Procedural Web Audio Synth)*
+
+- **Portfolio v1.0 (Foundational Developer Archive)**:  
+  🔗 [https://sidharth-singh-portfolio.vercel.app/](https://sidharth-singh-portfolio.vercel.app/)  
+  *(Branch: `main` · Original React + Vite developer portfolio baseline)*
 
 ## 🛠️ Technologies & Libraries Used
 
