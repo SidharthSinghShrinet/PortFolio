@@ -213,7 +213,7 @@ export default function Projects({ onActionClick, openPalette }) {
                           >
                             <Github className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
                             <span>Source Code</span>
-                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-300 dark:bg-emerald-500/15 dark:text-emerald-400 dark:border-emerald-500/30 font-semibold">
                               main-V2
                             </span>
                           </a>
@@ -239,7 +239,7 @@ export default function Projects({ onActionClick, openPalette }) {
                           onClick={scrollToV2Comparison}
                           className="btn btn-ghost"
                         >
-                          <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                          <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                           <span>Compare with v2.6 Upgrades</span>
                         </button>
 
@@ -253,7 +253,7 @@ export default function Projects({ onActionClick, openPalette }) {
                           >
                             <Github className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
                             <span>Source Code</span>
-                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-300 dark:bg-amber-500/15 dark:text-amber-400 dark:border-amber-500/30 font-semibold">
                               main
                             </span>
                           </a>
@@ -370,23 +370,23 @@ export default function Projects({ onActionClick, openPalette }) {
                 {/* Full-Width Architectural Comparison Matrix for Portfolio v2 vs v1 */}
                 {project.comparisonVsV1 && (
                   <div
-                    className="mt-6 pt-6 border-t border-[var(--line)]"
+                    className="mt-6 pt-6 border-t border-slate-200 dark:border-[var(--line)]"
                     style={{ gridColumn: "1 / -1" }}
                   >
                     {/* Interactive Toggle Header */}
                     <div className="flex items-center justify-between gap-4 flex-wrap pb-4">
                       <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                        <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:bg-emerald-500/15 dark:border-emerald-500/30 dark:text-emerald-400">
                           <Sparkles className="w-4 h-4 animate-spin-slow" />
                         </div>
                         <div>
-                          <h4 className="text-base font-semibold text-[var(--ink)] flex items-center gap-2 flex-wrap">
+                          <h4 className="text-base font-semibold text-slate-900 dark:text-[var(--ink)] flex items-center gap-2 flex-wrap">
                             <span>Architectural Evolution Matrix</span>
-                            <span className="text-xs font-mono font-medium px-2 py-0.5 rounded bg-[var(--paper-2)] border border-[var(--line)] text-[var(--ink-2)]">
+                            <span className="text-xs font-mono font-medium px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-slate-700 dark:bg-[var(--paper-2)] dark:border-[var(--line)] dark:text-[var(--ink-2)]">
                               v1.0 (Baseline) ➔ v2.6 (Production Leap)
                             </span>
                           </h4>
-                          <p className="text-xs text-[var(--muted)] mt-0.5">
+                          <p className="text-xs text-slate-600 dark:text-[var(--muted)] mt-0.5">
                             Detailed comparative breakdown of 8 major feature &amp; system upgrades implemented in Portfolio v2.6.
                           </p>
                         </div>
@@ -398,16 +398,20 @@ export default function Projects({ onActionClick, openPalette }) {
                           if (onActionClick) onActionClick();
                           setShowComparison((prev) => !prev);
                         }}
-                        className="btn btn-ghost text-xs px-3 py-1.5 border border-[var(--line)] hover:border-emerald-500/40"
+                        className={`text-xs px-3.5 py-1.5 rounded-lg font-mono font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 border ${
+                          showComparison
+                            ? "bg-emerald-50 text-emerald-800 border-emerald-300 shadow-xs dark:bg-emerald-500/15 dark:text-emerald-300 dark:border-emerald-500/40 dark:shadow-none"
+                            : "bg-white text-slate-800 border-slate-300 hover:border-emerald-600 hover:text-emerald-700 shadow-xs dark:bg-transparent dark:text-[var(--ink-2)] dark:border-[var(--line)] dark:hover:border-emerald-500/40 dark:hover:text-[var(--ink)] dark:shadow-none"
+                        }`}
                       >
                         {showComparison ? (
                           <>
-                            <ChevronUp className="w-3.5 h-3.5 text-emerald-400" />
+                            <ChevronUp className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                             <span>Collapse Comparison Matrix</span>
                           </>
                         ) : (
                           <>
-                            <ChevronDown className="w-3.5 h-3.5 text-emerald-400" />
+                            <ChevronDown className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                             <span>View Evolution Matrix (+8 Upgrades)</span>
                           </>
                         )}
@@ -418,27 +422,27 @@ export default function Projects({ onActionClick, openPalette }) {
                     {showComparison && (
                       <div className="space-y-4 pt-2 animate-fadeIn">
                         {/* High-Tech Evolution Banner */}
-                        <div className="p-3.5 rounded-xl bg-gradient-to-r from-amber-500/[0.08] via-[var(--paper-2)] to-emerald-500/[0.08] border border-[var(--line)] flex items-center justify-between gap-3 flex-wrap">
+                        <div className="p-3.5 rounded-xl bg-gradient-to-r from-amber-500/[0.08] via-slate-50 to-emerald-500/[0.08] border border-slate-200 shadow-xs dark:from-amber-500/[0.08] dark:via-[var(--paper-2)] dark:to-emerald-500/[0.08] dark:border-[var(--line)] dark:shadow-none flex items-center justify-between gap-3 flex-wrap">
                           <div className="flex items-center gap-2">
-                            <span className="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                            <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-amber-100 text-amber-800 border border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/30">
                               v1.0 BASELINE
                             </span>
-                            <span className="text-xs font-mono text-[var(--muted)]">
+                            <span className="text-xs font-mono text-slate-600 dark:text-[var(--muted)] font-medium">
                               Static React Showcase (2024)
                             </span>
                           </div>
 
-                          <div className="flex items-center gap-1.5 text-xs font-mono text-emerald-400 font-semibold">
+                          <div className="flex items-center gap-1.5 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold">
                             <span>➔</span>
                             <span>+8 ARCHITECTURAL ENGINE UPGRADES</span>
                             <span>➔</span>
                           </div>
 
                           <div className="flex items-center gap-2">
-                            <span className="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                            <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/30">
                               v2.6 PRODUCTION LEAP
                             </span>
-                            <span className="text-xs font-mono text-[var(--muted)]">
+                            <span className="text-xs font-mono text-slate-600 dark:text-[var(--muted)] font-medium">
                               Full-Stack Interactive Platform (2026)
                             </span>
                           </div>
@@ -446,21 +450,21 @@ export default function Projects({ onActionClick, openPalette }) {
 
                         {/* Quick Highlights Telemetry Strip */}
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono">
-                          <div className="p-2.5 rounded-lg bg-[var(--paper-2)] border border-[var(--line)]">
-                            <div className="text-[11px] text-[var(--muted)]">TERMINAL KERNEL</div>
-                            <div className="text-xs font-bold text-emerald-400 mt-0.5">15+ UNIX Commands</div>
+                          <div className="p-2.5 rounded-lg bg-white border border-slate-200 shadow-xs dark:bg-[var(--paper-2)] dark:border-[var(--line)] dark:shadow-none">
+                            <div className="text-[11px] text-slate-600 dark:text-[var(--muted)] font-semibold">TERMINAL KERNEL</div>
+                            <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 mt-0.5">15+ UNIX Commands</div>
                           </div>
-                          <div className="p-2.5 rounded-lg bg-[var(--paper-2)] border border-[var(--line)]">
-                            <div className="text-[11px] text-[var(--muted)]">3D VISUAL ENGINE</div>
-                            <div className="text-xs font-bold text-emerald-400 mt-0.5">60 FPS Particle Mesh</div>
+                          <div className="p-2.5 rounded-lg bg-white border border-slate-200 shadow-xs dark:bg-[var(--paper-2)] dark:border-[var(--line)] dark:shadow-none">
+                            <div className="text-[11px] text-slate-600 dark:text-[var(--muted)] font-semibold">3D VISUAL ENGINE</div>
+                            <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 mt-0.5">60 FPS Particle Mesh</div>
                           </div>
-                          <div className="p-2.5 rounded-lg bg-[var(--paper-2)] border border-[var(--line)]">
-                            <div className="text-[11px] text-[var(--muted)]">LIVE TELEMETRY</div>
-                            <div className="text-xs font-bold text-emerald-400 mt-0.5">GitHub REST API v3</div>
+                          <div className="p-2.5 rounded-lg bg-white border border-slate-200 shadow-xs dark:bg-[var(--paper-2)] dark:border-[var(--line)] dark:shadow-none">
+                            <div className="text-[11px] text-slate-600 dark:text-[var(--muted)] font-semibold">LIVE TELEMETRY</div>
+                            <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 mt-0.5">GitHub REST API v3</div>
                           </div>
-                          <div className="p-2.5 rounded-lg bg-[var(--paper-2)] border border-[var(--line)]">
-                            <div className="text-[11px] text-[var(--muted)]">GLOBAL SEARCH</div>
-                            <div className="text-xs font-bold text-emerald-400 mt-0.5">⌘K Command Palette</div>
+                          <div className="p-2.5 rounded-lg bg-white border border-slate-200 shadow-xs dark:bg-[var(--paper-2)] dark:border-[var(--line)] dark:shadow-none">
+                            <div className="text-[11px] text-slate-600 dark:text-[var(--muted)] font-semibold">GLOBAL SEARCH</div>
+                            <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 mt-0.5">⌘K Command Palette</div>
                           </div>
                         </div>
 
@@ -469,19 +473,19 @@ export default function Projects({ onActionClick, openPalette }) {
                           {project.comparisonVsV1.map((item, idx) => (
                             <div
                               key={idx}
-                              className="p-3.5 rounded-xl bg-[var(--paper-2)] border border-[var(--line)] hover:border-emerald-500/30 transition-colors flex flex-col justify-between"
+                              className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm dark:bg-[var(--paper-2)] dark:border-[var(--line)] dark:shadow-none hover:border-emerald-500/40 dark:hover:border-emerald-500/30 transition-all flex flex-col justify-between"
                             >
                               {/* Header: Title + Category + Badge */}
-                              <div className="flex items-start justify-between gap-2 mb-2.5 pb-2 border-b border-[var(--line)]">
+                              <div className="flex items-start justify-between gap-2 mb-2.5 pb-2 border-b border-slate-100 dark:border-[var(--line)]">
                                 <div>
-                                  <div className="text-[10px] font-mono text-[var(--muted)] uppercase tracking-wider">
+                                  <div className="text-[10px] font-mono text-slate-500 dark:text-[var(--muted)] uppercase tracking-wider font-semibold">
                                     {item.category}
                                   </div>
-                                  <div className="text-sm font-semibold text-[var(--ink)] mt-0.5">
+                                  <div className="text-sm font-bold text-slate-900 dark:text-[var(--ink)] mt-0.5">
                                     {item.feature}
                                   </div>
                                 </div>
-                                <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 whitespace-nowrap">
+                                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-300 dark:bg-emerald-500/15 dark:text-emerald-400 dark:border-emerald-500/25 whitespace-nowrap">
                                   {item.badge}
                                 </span>
                               </div>
@@ -489,21 +493,21 @@ export default function Projects({ onActionClick, openPalette }) {
                               {/* Two comparative sides */}
                               <div className="space-y-2 text-xs">
                                 {/* v1.0 Baseline */}
-                                <div className="p-2 rounded-lg bg-black/15 dark:bg-black/30 border border-red-500/15 flex items-start gap-2">
-                                  <span className="px-1.5 py-0.2 rounded text-[9.5px] font-mono font-semibold bg-red-500/15 text-red-400 border border-red-500/25 flex-shrink-0 mt-0.5">
+                                <div className="p-2.5 rounded-lg bg-rose-50/70 border border-rose-200/80 dark:bg-black/30 dark:border-red-500/15 flex items-start gap-2">
+                                  <span className="px-1.5 py-0.5 rounded text-[9.5px] font-mono font-bold bg-rose-100 text-rose-800 border border-rose-300 dark:bg-red-500/15 dark:text-red-400 dark:border-red-500/25 flex-shrink-0 mt-0.5">
                                     v1.0
                                   </span>
-                                  <span className="text-[var(--ink-2)] line-clamp-2">
+                                  <span className="text-slate-700 dark:text-[var(--ink-2)] leading-relaxed">
                                     {item.v1}
                                   </span>
                                 </div>
 
                                 {/* v2.6 Upgrade */}
-                                <div className="p-2 rounded-lg bg-emerald-500/[0.06] border border-emerald-500/25 flex items-start gap-2">
-                                  <span className="px-1.5 py-0.2 rounded text-[9.5px] font-mono font-semibold bg-emerald-500/25 text-emerald-300 border border-emerald-500/35 flex-shrink-0 mt-0.5">
+                                <div className="p-2.5 rounded-lg bg-emerald-50/70 border border-emerald-200/90 dark:bg-emerald-500/[0.06] dark:border-emerald-500/25 flex items-start gap-2">
+                                  <span className="px-1.5 py-0.5 rounded text-[9.5px] font-mono font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 dark:bg-emerald-500/25 dark:text-emerald-300 dark:border-emerald-500/35 flex-shrink-0 mt-0.5">
                                     v2.6
                                   </span>
-                                  <span className="text-[var(--ink)] font-medium leading-relaxed">
+                                  <span className="text-slate-900 dark:text-[var(--ink)] font-medium leading-relaxed">
                                     {item.v2}
                                   </span>
                                 </div>
@@ -513,9 +517,9 @@ export default function Projects({ onActionClick, openPalette }) {
                         </div>
 
                         {/* Interactive Action Bar inside Comparison Matrix */}
-                        <div className="p-3 rounded-xl bg-black/20 backdrop-blur-md border border-[var(--line)] flex items-center justify-between gap-3 flex-wrap mt-3">
-                          <div className="flex items-center gap-2 text-xs font-mono text-[var(--muted)]">
-                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 shadow-xs dark:bg-black/20 dark:border-[var(--line)] dark:shadow-none flex items-center justify-between gap-3 flex-wrap mt-3">
+                          <div className="flex items-center gap-2 text-xs font-mono text-slate-700 dark:text-[var(--muted)] font-medium">
+                            <span className="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-pulse" />
                             <span>Ready to test the live v2.6 features?</span>
                           </div>
 
@@ -523,7 +527,7 @@ export default function Projects({ onActionClick, openPalette }) {
                             <button
                               type="button"
                               onClick={scrollToTerminal}
-                              className="px-3 py-1.5 rounded-lg text-xs font-mono font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 transition-colors cursor-pointer flex items-center gap-1.5"
+                              className="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-emerald-600 text-white hover:bg-emerald-700 shadow-xs dark:bg-emerald-500/15 dark:text-emerald-300 dark:border dark:border-emerald-500/30 dark:hover:bg-emerald-500/25 dark:shadow-none transition-colors cursor-pointer flex items-center gap-1.5"
                             >
                               <Terminal className="w-3.5 h-3.5" />
                               <span>Test CLI Shell</span>
@@ -532,7 +536,7 @@ export default function Projects({ onActionClick, openPalette }) {
                             <button
                               type="button"
                               onClick={handleOpenPalette}
-                              className="px-3 py-1.5 rounded-lg text-xs font-mono font-semibold bg-white/[0.08] text-[var(--ink)] border border-[var(--line)] hover:border-emerald-400/40 transition-colors cursor-pointer flex items-center gap-1.5"
+                              className="px-3 py-1.5 rounded-lg text-xs font-mono font-semibold bg-white text-slate-800 border border-slate-300 hover:border-emerald-500 shadow-xs dark:bg-white/[0.08] dark:text-[var(--ink)] dark:border-[var(--line)] dark:hover:border-emerald-400/40 dark:shadow-none transition-colors cursor-pointer flex items-center gap-1.5"
                             >
                               <Command className="w-3.5 h-3.5" />
                               <span>Launch ⌘K Palette</span>
@@ -543,7 +547,7 @@ export default function Projects({ onActionClick, openPalette }) {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={handleInteractiveClick}
-                              className="px-3 py-1.5 rounded-lg text-xs font-mono text-[var(--muted)] hover:text-[var(--ink)] border border-[var(--line)] hover:border-[var(--line-2)] transition-colors flex items-center gap-1.5"
+                              className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium bg-white text-slate-600 hover:text-slate-900 border border-slate-300 hover:border-slate-400 shadow-xs dark:bg-transparent dark:text-[var(--muted)] dark:hover:text-[var(--ink)] dark:border-[var(--line)] dark:hover:border-[var(--line-2)] dark:shadow-none transition-colors flex items-center gap-1.5"
                             >
                               <span>Explore v1 Archive</span>
                               <ExternalLink className="w-3 h-3" />
