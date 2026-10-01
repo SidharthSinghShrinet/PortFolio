@@ -52,7 +52,7 @@ export default function NowSection() {
                 return (
                   <TiltCard
                     key={idx}
-                    maxTilt={5}
+                    maxTilt={3.5}
                     glare={true}
                     className="h-full rounded-xl"
                   >

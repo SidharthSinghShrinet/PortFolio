@@ -10,7 +10,7 @@ import React, { useRef, useEffect } from "react";
 export default function TiltCard({
   children,
   className = "",
-  maxTilt = 8,
+  maxTilt = 3,
   glare = true,
   ...props
 }) {
@@ -40,14 +40,14 @@ export default function TiltCard({
       const rotX = ((y - centerY) / centerY) * -maxTilt;
       const rotY = ((x - centerX) / centerX) * maxTilt;
 
-      card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`;
-      card.style.transition = "transform 0.08s ease-out";
+      card.style.transform = `perspective(1400px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.008, 1.008, 1.008)`;
+      card.style.transition = "transform 0.1s ease-out";
 
       if (glare && glareRef.current) {
         const posX = (x / rect.width) * 100;
         const posY = (y / rect.height) * 100;
-        glareRef.current.style.opacity = "0.22";
-        glareRef.current.style.background = `radial-gradient(circle 350px at ${posX}% ${posY}%, rgba(255, 255, 255, 0.35), transparent 70%)`;
+        glareRef.current.style.opacity = "0.15";
+        glareRef.current.style.background = `radial-gradient(circle 380px at ${posX}% ${posY}%, rgba(255, 255, 255, 0.28), transparent 70%)`;
       }
     });
   };
@@ -56,7 +56,7 @@ export default function TiltCard({
     if (rafId.current) cancelAnimationFrame(rafId.current);
     const card = cardRef.current;
     if (card) {
-      card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+      card.style.transform = "perspective(1400px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
       card.style.transition = "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
     }
     if (glare && glareRef.current) {
@@ -76,7 +76,7 @@ export default function TiltCard({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        transform: "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
+        transform: "perspective(1400px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
         transformStyle: "preserve-3d",
       }}
       className={`relative will-change-transform ${className}`}

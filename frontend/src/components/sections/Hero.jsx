@@ -95,7 +95,7 @@ export default function Hero({ onActionClick }) {
           {/* Media & Interactive Terminal Column */}
           <div className="hero-aside">
             {/* 3D Tilt Photo Card with Specular Glare */}
-            <TiltCard maxTilt={7} glare={true} className="rounded-[var(--radius-lg)] w-full max-w-full">
+            <TiltCard maxTilt={4.5} glare={true} className="rounded-[var(--radius-lg)] w-full max-w-full">
               <div className="photo-card" style={{ width: "100%", height: "100%" }}>
                 <img
                   src={PERSONAL_INFO.profileImg}

@@ -48,7 +48,7 @@ export default function Contact({ onActionClick, theme = "dark" }) {
           lead="Whether you're looking for a Full Stack Engineer to architect resilient microservices, scale enterprise dealership workflows, or build modern web platforms — I'm open for full-time opportunities."
         />
 
-        <TiltCard maxTilt={2.5} glare={true} className="rounded-[var(--radius-xl)]">
+        <TiltCard maxTilt={1.8} glare={true} className="rounded-[var(--radius-xl)]">
           <div className="contact" style={{ marginBottom: 0 }}>
             {/* Left Column: Narrative, Quick CTAs, Live Web3Forms Form & 3D Globe */}
             <div>

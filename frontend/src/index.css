@@ -2740,3 +2740,45 @@ body.cursor-hover .cursor-ring {
     padding-bottom: max(56px, env(safe-area-inset-bottom));
   }
 }
+
+/* ==========================================================================
+   Light Mode Visibility for "View Evolution Matrix" & "Collapse Comparison Matrix"
+   Strictly scoped to Light Mode: html:not(.dark):not([data-theme="dark"])
+   Dark Mode remains 100% untouched and unaffected.
+   ========================================================================== */
+html:not(.dark):not([data-theme="dark"]) .matrix-toggle-btn {
+  background-color: #ffffff;
+  color: #0f172a;
+  border-color: #cbd5e1;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+html:not(.dark):not([data-theme="dark"]) .matrix-toggle-btn:hover {
+  background-color: #f8fafc;
+  color: #047857;
+  border-color: #059669;
+}
+
+html:not(.dark):not([data-theme="dark"]) .matrix-toggle-icon {
+  color: #047857 !important;
+}
+
+/* Light Mode: v1.0 BASELINE orange box */
+html:not(.dark):not([data-theme="dark"]) .evolution-badge-v1 {
+  background-color: #fef3c7 !important; /* amber-100 */
+  color: #78350f !important;            /* amber-900: dark, sharp and 100% visible */
+  border-color: #fcd34d !important;      /* amber-300 */
+}
+
+/* Light Mode: v2.6 PRODUCTION LEAP green box */
+html:not(.dark):not([data-theme="dark"]) .evolution-badge-v2 {
+  background-color: #d1fae5 !important; /* emerald-100 */
+  color: #064e3b !important;            /* emerald-900: dark, sharp and 100% visible */
+  border-color: #6ee7b7 !important;      /* emerald-300 */
+}
+
+/* Light Mode: +8 ARCHITECTURAL ENGINE UPGRADES text */
+html:not(.dark):not([data-theme="dark"]) .evolution-banner-upgrades {
+  color: #047857 !important;            /* emerald-700: crisp and readable */
+}
+

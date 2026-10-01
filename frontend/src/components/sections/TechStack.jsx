@@ -31,7 +31,7 @@ export default function TechStack({ onActionClick }) {
           {TECH_CATEGORIES.map((cat, idx) => (
             <TiltCard
               key={idx}
-              maxTilt={6}
+              maxTilt={3.5}
               glare={true}
               className="rounded-[var(--radius-lg)] h-full"
             >
