@@ -34,17 +34,18 @@ const AUTOCOMPLETE_LIST = [
   "sudo hire",
 ];
 
-export default function InteractiveTerminal({ onActionClick }) {
+export default function InteractiveTerminal({ onActionClick, onOpenAdmin, personalInfo }) {
+  const info = personalInfo || PERSONAL_INFO;
   const [history, setHistory] = useState([
     ...WELCOME_MESSAGE.map((text) => ({ type: "output", text })),
     { type: "output", text: "" },
     { type: "command", text: "cat sidharth.config.json" },
     { type: "output", text: "{" },
-    { type: "output", text: `  "name": "${PERSONAL_INFO.name}",` },
-    { type: "output", text: `  "role": "${PERSONAL_INFO.title}",` },
+    { type: "output", text: `  "name": "${info.name || PERSONAL_INFO.name}",` },
+    { type: "output", text: `  "role": "${info.title || PERSONAL_INFO.title}",` },
     { type: "output", text: `  "experience": "1.5+ years enterprise ERP & full-stack platforms",` },
     { type: "output", text: `  "stats": { "reactProjects": "60+", "mernApps": "15+", "leetcode": "200+" },` },
-    { type: "output", text: `  "location": "${PERSONAL_INFO.location}",` },
+    { type: "output", text: `  "location": "${info.location || PERSONAL_INFO.location}",` },
     { type: "output", text: `  "coreStack": ["React 19", "Node.js", "TypeScript", "MySQL", "MongoDB", "Qdrant"],` },
     { type: "output", text: `  "status": "open_for_opportunities"` },
     { type: "output", text: "}" },
@@ -81,6 +82,23 @@ export default function InteractiveTerminal({ onActionClick }) {
       return;
     }
 
+    // 1.5 Secret Admin Portal (Hidden from help and autocomplete)
+    if (lower === "sudo admin" || lower === "sudo" || lower === "su root" || lower === "su") {
+      setHistory((prev) => [
+        ...prev,
+        { type: "command", text: trimmed },
+        { type: "accent", text: "[SECURITY PROTOCOL] Verifying elevated administrative token..." },
+        { type: "output", text: "Bridging to root administration gateway..." },
+      ]);
+      if (onOpenAdmin) {
+        setTimeout(() => {
+          onOpenAdmin();
+        }, 500);
+      }
+      setInputVal("");
+      return;
+    }
+
     // 2. Easter egg: sudo hire
     if (lower === "sudo hire" || lower === "sudo hire sidharth" || lower === "hire") {
       setEasterEggActive(true);
@@ -90,9 +108,9 @@ export default function InteractiveTerminal({ onActionClick }) {
         { type: "accent", text: "[AUTHORIZATION GRANTED] Root access acquired: sidharth_singh.fullstack" },
         { type: "output", text: "----------------------------------------------------------------" },
         { type: "output", text: "🎉 Status     : Available immediately for Full-Time SWE / Full Stack roles" },
-        { type: "output", text: `📧 Direct Mail : ${PERSONAL_INFO.email}` },
-        { type: "output", text: `📞 Phone       : ${PERSONAL_INFO.phone}` },
-        { type: "output", text: `📍 Location    : ${PERSONAL_INFO.location}` },
+        { type: "output", text: `📧 Direct Mail : ${info.email || PERSONAL_INFO.email}` },
+        { type: "output", text: `📞 Phone       : ${info.phone || PERSONAL_INFO.phone}` },
+        { type: "output", text: `📍 Location    : ${info.location || PERSONAL_INFO.location}` },
         { type: "output", text: "⚡ Action      : Navigating to Section 05 [Contact Dispatch Portal]..." },
         { type: "output", text: "----------------------------------------------------------------" },
       ]);
@@ -102,7 +120,7 @@ export default function InteractiveTerminal({ onActionClick }) {
         if (contactSection) {
           contactSection.scrollIntoView({ behavior: "smooth" });
         }
-        window.location.href = `mailto:${PERSONAL_INFO.email}?subject=Interview%20Invitation%20for%20Full%20Stack%20Role`;
+        window.location.href = `mailto:${info.email || PERSONAL_INFO.email}?subject=Interview%20Invitation%20for%20Full%20Stack%20Role`;
         setEasterEggActive(false);
       }, 900);
 
@@ -144,11 +162,11 @@ export default function InteractiveTerminal({ onActionClick }) {
       setHistory((prev) => [
         ...prev,
         { type: "command", text: trimmed },
-        { type: "accent", text: `[FETCH SUCCESS] Downloading official resume: ${PERSONAL_INFO.resumeUrl}` },
+        { type: "accent", text: `[FETCH SUCCESS] Downloading official resume: ${info.resumeUrl || PERSONAL_INFO.resumeUrl}` },
         { type: "output", text: "Opening Resume.pdf in a new tab..." },
       ]);
       setTimeout(() => {
-        window.open(PERSONAL_INFO.resumeUrl, "_blank");
+        window.open(info.resumeUrl || PERSONAL_INFO.resumeUrl, "_blank");
       }, 600);
       setInputVal("");
       return;
@@ -159,11 +177,11 @@ export default function InteractiveTerminal({ onActionClick }) {
       setHistory((prev) => [
         ...prev,
         { type: "command", text: trimmed },
-        { type: "output", text: `GitHub: ${PERSONAL_INFO.github}` },
+        { type: "output", text: `GitHub: ${info.github || PERSONAL_INFO.github}` },
         { type: "accent", text: "Opening GitHub profile in a new tab..." },
       ]);
       setTimeout(() => {
-        window.open(PERSONAL_INFO.github, "_blank");
+        window.open(info.github || PERSONAL_INFO.github, "_blank");
       }, 600);
       setInputVal("");
       return;
@@ -174,11 +192,11 @@ export default function InteractiveTerminal({ onActionClick }) {
       setHistory((prev) => [
         ...prev,
         { type: "command", text: trimmed },
-        { type: "output", text: `LinkedIn: ${PERSONAL_INFO.linkedin}` },
+        { type: "output", text: `LinkedIn: ${info.linkedin || PERSONAL_INFO.linkedin}` },
         { type: "accent", text: "Opening LinkedIn profile in a new tab..." },
       ]);
       setTimeout(() => {
-        window.open(PERSONAL_INFO.linkedin, "_blank");
+        window.open(info.linkedin || PERSONAL_INFO.linkedin, "_blank");
       }, 600);
       setInputVal("");
       return;
@@ -189,8 +207,8 @@ export default function InteractiveTerminal({ onActionClick }) {
       setHistory((prev) => [
         ...prev,
         { type: "command", text: trimmed },
-        { type: "output", text: `${PERSONAL_INFO.name.toLowerCase().replace(" ", "_")} (Full Stack Developer)` },
-        { type: "output", text: `UID: 1000 · Location: ${PERSONAL_INFO.location}` },
+        { type: "output", text: `${(info.name || PERSONAL_INFO.name).toLowerCase().replace(" ", "_")} (Full Stack Developer)` },
+        { type: "output", text: `UID: 1000 · Location: ${info.location || PERSONAL_INFO.location}` },
         { type: "accent", text: "Specialty: Enterprise Microservices & High-Throughput Web Platforms" },
       ]);
       setInputVal("");
@@ -250,18 +268,18 @@ export default function InteractiveTerminal({ onActionClick }) {
       if (!target || target === "sidharth.config.json" || target === "config" || target === "config.json") {
         outputLines = [
           "{",
-          `  "name": "${PERSONAL_INFO.name}",`,
-          `  "role": "${PERSONAL_INFO.title}",`,
+          `  "name": "${info.name || PERSONAL_INFO.name}",`,
+          `  "role": "${info.title || PERSONAL_INFO.title}",`,
           `  "degree": "B.Tech in Computer Science & Engineering (AKTU)",`,
           `  "experience": "1.5+ years enterprise ERP & full-stack platforms",`,
           `  "stats": {`,
-          `    "reactProjects": "${PERSONAL_INFO.statsSummary?.reactProjects || "60+"}",`,
-          `    "mernApps": "${PERSONAL_INFO.statsSummary?.mernApps || "15+"}",`,
-          `    "leetcodeSolved": "${PERSONAL_INFO.statsSummary?.leetcodeSolved || "200+"}",`,
-          `    "activeUsers": "${PERSONAL_INFO.statsSummary?.activeUsers || "700+"}"`,
+          `    "reactProjects": "${info.statsSummary?.reactProjects || "60+"}",`,
+          `    "mernApps": "${info.statsSummary?.mernApps || "15+"}",`,
+          `    "leetcodeSolved": "${info.statsSummary?.leetcodeSolved || "200+"}",`,
+          `    "activeUsers": "${info.statsSummary?.activeUsers || "700+"}"`,
           `  },`,
-          `  "motto": "${PERSONAL_INFO.personalMotto}",`,
-          `  "location": "${PERSONAL_INFO.location}",`,
+          `  "motto": "${info.personalMotto || PERSONAL_INFO.personalMotto}",`,
+          `  "location": "${info.location || PERSONAL_INFO.location}",`,
           `  "coreStack": ["React 19", "Node.js", "TypeScript", "MySQL", "MongoDB", "Qdrant"],`,
           `  "status": "open_for_opportunities"`,
           "}",
@@ -553,11 +571,11 @@ export default function InteractiveTerminal({ onActionClick }) {
     // 23. Contact command
     if (lower === "contact" || lower === "email" || lower === "phone" || lower === "reach") {
       const outputLines = [
-        `Email    : ${PERSONAL_INFO.email}`,
-        `Phone    : ${PERSONAL_INFO.phone}`,
-        `LinkedIn : ${PERSONAL_INFO.linkedin}`,
-        `GitHub   : ${PERSONAL_INFO.github}`,
-        `Resume   : ${PERSONAL_INFO.resumeUrl}`,
+        `Email    : ${info.email || PERSONAL_INFO.email}`,
+        `Phone    : ${info.phone || PERSONAL_INFO.phone}`,
+        `LinkedIn : ${info.linkedin || PERSONAL_INFO.linkedin}`,
+        `GitHub   : ${info.github || PERSONAL_INFO.github}`,
+        `Resume   : ${info.resumeUrl || PERSONAL_INFO.resumeUrl}`,
         `Form     : Submit directly via Section 05 [Contact Dispatch Form]`,
       ];
       setHistory((prev) => [

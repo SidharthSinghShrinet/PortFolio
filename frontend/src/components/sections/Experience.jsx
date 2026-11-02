@@ -6,7 +6,8 @@ import SectionHeader from "../common/SectionHeader";
  * Experience Component
  * Lists professional roles, responsibilities, and architectural milestones.
  */
-export default function Experience({ onActionClick }) {
+export default function Experience({ onActionClick, experiences }) {
+  const list = experiences && experiences.length > 0 ? experiences : EXPERIENCES;
   const handleChipClick = () => {
     if (onActionClick) onActionClick();
   };
@@ -27,7 +28,7 @@ export default function Experience({ onActionClick }) {
         />
 
         <div className="exp-list">
-          {EXPERIENCES.map((exp, idx) => (
+          {list.map((exp, idx) => (
             <div key={idx} className="exp-item">
               <div className="exp-head">
                 <div>

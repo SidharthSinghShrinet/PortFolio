@@ -30,14 +30,15 @@ const FILTER_TABS = [
  * Production projects showcase with category filters, system telemetry specs,
  * and an in-depth Architectural Evolution Matrix comparing Portfolio v2.6 vs v1.0.
  */
-export default function Projects({ onActionClick, openPalette }) {
+export default function Projects({ onActionClick, openPalette, projects }) {
   const [activeTab, setActiveTab] = useState("all");
   const [showComparison, setShowComparison] = useState(true);
+  const allProjects = projects && projects.length > 0 ? projects : PROJECTS;
 
   const filteredProjects =
     activeTab === "all"
-      ? PROJECTS
-      : PROJECTS.filter((p) => p.category === activeTab);
+      ? allProjects
+      : allProjects.filter((p) => p.category === activeTab);
 
   const handleTabClick = (tabId) => {
     if (onActionClick) onActionClick();
@@ -96,8 +97,8 @@ export default function Projects({ onActionClick, openPalette }) {
           {FILTER_TABS.map((tab) => {
             const count =
               tab.id === "all"
-                ? PROJECTS.length
-                : PROJECTS.filter((p) => p.category === tab.id).length;
+                ? allProjects.length
+                : allProjects.filter((p) => p.category === tab.id).length;
 
             return (
               <button
@@ -330,7 +331,7 @@ export default function Projects({ onActionClick, openPalette }) {
                           loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 pointer-events-none" />
-                        
+
                         {/* Overlay Tag */}
                         <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-black/60 backdrop-blur-md text-white border border-white/15">
                           {project.id === "portfoliov2" ? "v2.6 PRODUCTION" : project.id === "portfoliov1" ? "v1.0 ARCHIVE" : "VERIFIED ASSET"}
@@ -361,8 +362,8 @@ export default function Projects({ onActionClick, openPalette }) {
                       {project.id === "portfoliov2"
                         ? "KERNEL: REACT 19 ESM"
                         : project.id === "portfoliov1"
-                        ? "ARCHIVE: VITE 4 SPA"
-                        : "ENCRYPT: TLS 1.3 / HS256"}
+                          ? "ARCHIVE: VITE 4 SPA"
+                          : "ENCRYPT: TLS 1.3 / HS256"}
                     </span>
                   </div>
                 </div>
@@ -523,7 +524,7 @@ export default function Projects({ onActionClick, openPalette }) {
                             <button
                               type="button"
                               onClick={scrollToTerminal}
-                              className="px-3 py-1.5 rounded-lg text-xs font-mono font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 transition-colors cursor-pointer flex items-center gap-1.5"
+                              className="px-3 py-1.5 rounded-lg text-xs font-mono font-semibold bg-black text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 transition-colors cursor-pointer flex items-center gap-1.5"
                             >
                               <Terminal className="w-3.5 h-3.5" />
                               <span>Test CLI Shell</span>

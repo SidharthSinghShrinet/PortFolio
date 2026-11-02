@@ -5,10 +5,11 @@ import { STATS_DATA } from "../../data/portfolioData";
  * StatsBar Component
  * Renders verified key engineering milestones in a high-density matrix.
  */
-export default function StatsBar() {
+export default function StatsBar({ stats }) {
+  const displayStats = stats && stats.length > 0 ? stats : STATS_DATA;
   return (
     <div className="stats" aria-label="Key Engineering Metrics">
-      {STATS_DATA.map((item, idx) => (
+      {displayStats.map((item, idx) => (
         <div key={idx} className="stat">
           <div className="num">
             <span>{item.num}</span>

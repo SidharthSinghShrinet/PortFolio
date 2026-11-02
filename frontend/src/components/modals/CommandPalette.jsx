@@ -15,6 +15,7 @@ import {
   ExternalLink,
   Copy,
   Phone,
+  Lock,
 } from "lucide-react";
 import { PERSONAL_INFO } from "../../data/portfolioData";
 
@@ -31,7 +32,11 @@ export default function CommandPalette({
   toggleAudio,
   onActionClick,
   onOpenSound,
+  onOpenAdmin,
+  personalInfo,
+  projects,
 }) {
+  const info = personalInfo || PERSONAL_INFO;
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef(null);
@@ -186,35 +191,35 @@ export default function CommandPalette({
       label: "Download Full Resume (PDF)",
       hint: "Resume.pdf",
       icon: <FileText className="w-3.5 h-3.5" />,
-      run: () => window.open(PERSONAL_INFO.resumeUrl, "_blank"),
+      run: () => window.open(info.resumeUrl || PERSONAL_INFO.resumeUrl, "_blank"),
     },
     {
       group: "Actions",
       id: "act-copy-email",
-      label: `Copy Email (${PERSONAL_INFO.email})`,
+      label: `Copy Email (${info.email || PERSONAL_INFO.email})`,
       hint: "Clipboard",
       icon: <Copy className="w-3.5 h-3.5" />,
       run: () => {
-        navigator.clipboard.writeText(PERSONAL_INFO.email);
+        navigator.clipboard.writeText(info.email || PERSONAL_INFO.email);
       },
     },
     {
       group: "Actions",
       id: "act-copy-phone",
-      label: `Copy Phone (${PERSONAL_INFO.phone})`,
+      label: `Copy Phone (${info.phone || PERSONAL_INFO.phone})`,
       hint: "Clipboard",
       icon: <Phone className="w-3.5 h-3.5" />,
       run: () => {
-        navigator.clipboard.writeText(PERSONAL_INFO.phone);
+        navigator.clipboard.writeText(info.phone || PERSONAL_INFO.phone);
       },
     },
     {
       group: "Actions",
       id: "act-github",
       label: "Open GitHub Profile",
-      hint: "@SidharthSinghShrinet",
+      hint: `@${info.githubUsername || PERSONAL_INFO.githubUsername || "SidharthSinghShrinet"}`,
       icon: <Github className="w-3.5 h-3.5" />,
-      run: () => window.open(PERSONAL_INFO.github, "_blank"),
+      run: () => window.open(info.github || PERSONAL_INFO.github, "_blank"),
     },
     {
       group: "Actions",
@@ -222,7 +227,7 @@ export default function CommandPalette({
       label: "Open LinkedIn Profile",
       hint: "/in/sidharth-singh-shrinet",
       icon: <Linkedin className="w-3.5 h-3.5" />,
-      run: () => window.open(PERSONAL_INFO.linkedin, "_blank"),
+      run: () => window.open(info.linkedin || PERSONAL_INFO.linkedin, "_blank"),
     },
 
     // System Settings
@@ -242,6 +247,22 @@ export default function CommandPalette({
       icon: audioOn ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />,
       run: () => toggleAudio(),
     },
+
+    // Hidden Admin Action (Only shown when explicitly searching for admin/sudo)
+    ...(query.toLowerCase().includes("admin") || query.toLowerCase().includes("sudo")
+      ? [
+          {
+            group: "Administration",
+            id: "act-admin-gate",
+            label: "Open Root Administration Control Panel",
+            hint: "SYS.ADMIN //",
+            icon: <Lock className="w-3.5 h-3.5 text-orange-400" />,
+            run: () => {
+              if (onOpenAdmin) onOpenAdmin();
+            },
+          },
+        ]
+      : []),
   ];
 
   const filtered = ACTIONS.filter(

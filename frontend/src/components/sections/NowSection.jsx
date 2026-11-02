@@ -9,6 +9,15 @@ const DOMAIN_ICONS = {
   "In AI Semantic Search & Recommendation Systems": BrainCircuit,
 };
 
+function getDomainIcon(domain = "") {
+  if (DOMAIN_ICONS[domain]) return DOMAIN_ICONS[domain];
+  const d = domain.toLowerCase();
+  if (d.includes("java") || d.includes("system") || d.includes("backend")) return Coffee;
+  if (d.includes("dsa") || d.includes("algorithm") || d.includes("structure")) return Binary;
+  if (d.includes("ai") || d.includes("search") || d.includes("vector") || d.includes("recommendation")) return BrainCircuit;
+  return Sparkles;
+}
+
 /**
  * NowSection Component
  * Displays currently building & exploring focus areas:
@@ -17,7 +26,8 @@ const DOMAIN_ICONS = {
  * - In AI Semantic Search and Recommendation Based System
  * Full-width responsive 3-column layout with 3D Tilt cards and horizontal telemetry strip.
  */
-export default function NowSection() {
+export default function NowSection({ nowData }) {
+  const data = nowData || NOW_DATA;
   return (
     <section className="py-16" aria-label="Current Engineering Focus">
       <div className="page">
@@ -32,23 +42,29 @@ export default function NowSection() {
           <div className="relative z-10 max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold text-orange-600 dark:text-orange-400 bg-orange-500/10 dark:bg-orange-500/15 border border-orange-600/25 dark:border-orange-500/30 mb-3 shadow-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
-              <span>{NOW_DATA.label}</span>
+              <span>{data.label || "Currently Building & Exploring"}</span>
             </div>
 
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[var(--ink)] leading-tight">
-              {NOW_DATA.title}
+              {data.title || "Core Java, DSA & AI Semantic Recommendation Systems"}
             </h3>
 
             <p className="mt-3 text-sm sm:text-base text-[var(--ink-2)] leading-relaxed">
-              {NOW_DATA.description}
+              {data.description}
             </p>
           </div>
 
           {/* 3 Domain Focus Cards — Full-Width 3-Column Responsive Grid */}
-          {NOW_DATA.focusAreas && (
+          {data.focusAreas && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8 relative z-10">
-              {NOW_DATA.focusAreas.map((area, idx) => {
-                const IconComponent = DOMAIN_ICONS[area.domain] || Sparkles;
+              {data.focusAreas.map((area, idx) => {
+                const IconComponent = getDomainIcon(area.domain);
+                const skillsList = Array.isArray(area.skills)
+                  ? area.skills
+                  : typeof area.skills === "string"
+                  ? area.skills.split(",").map((s) => s.trim()).filter(Boolean)
+                  : area.tech || [];
+
                 return (
                   <TiltCard
                     key={idx}
@@ -81,13 +97,13 @@ export default function NowSection() {
 
                         {/* Description */}
                         <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed mt-2 mb-4">
-                          {area.desc}
+                          {area.desc || area.description}
                         </p>
                       </div>
 
                       {/* Skill Pills */}
                       <div className="flex flex-wrap gap-1.5 pt-3 border-t border-[var(--line)]/40 mt-auto">
-                        {area.skills.map((skill, sIdx) => (
+                        {skillsList.map((skill, sIdx) => (
                           <span
                             key={sIdx}
                             className="px-2 py-0.5 rounded-md text-[10.5px] font-mono bg-[var(--paper-2)]/30 text-[var(--ink)] border border-[var(--line)]/60 font-semibold"
@@ -105,7 +121,7 @@ export default function NowSection() {
 
           {/* Bottom Telemetry Strip across full width */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-6 border-t border-[var(--line)]/40 relative z-10">
-            {NOW_DATA.telemetry.map((row, idx) => (
+            {((data && data.telemetry) || NOW_DATA.telemetry).map((row, idx) => (
               <div
                 key={idx}
                 className="p-3 rounded-lg bg-[var(--paper)]/16 border border-[var(--line)]/40 flex flex-col justify-between"

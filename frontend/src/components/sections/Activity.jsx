@@ -26,7 +26,8 @@ const LANGUAGE_COLORS = {
  * Displays dynamic live GitHub telemetry: total repositories, actual contribution heat map,
  * language distribution, and academic foundations. Does not render individual repos.
  */
-export default function Activity({ onCellHover }) {
+export default function Activity({ onCellHover, educationData, personalInfo }) {
+  const educationList = educationData && educationData.length > 0 ? educationData : EDUCATION_DATA;
   const { profile, stats, contributions, isLive, loading } = useGitHubData();
 
   // Convert linear days of contributions into 52 weeks x 7 days structure
@@ -325,7 +326,7 @@ export default function Activity({ onCellHover }) {
               <h3 className="text-base font-semibold tracking-normal">Academic Qualifications</h3>
             </div>
 
-            {EDUCATION_DATA.map((item, idx) => (
+            {educationList.map((item, idx) => (
               <div key={idx} className="edu-row">
                 {item.isCert ? (
                   <div className="flex items-center gap-2">

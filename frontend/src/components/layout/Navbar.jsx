@@ -22,7 +22,9 @@ export default function Navbar({
   toggleAudio,
   openPalette,
   onActionClick,
+  personalInfo,
 }) {
+  const info = personalInfo || PERSONAL_INFO;
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("experience");
@@ -106,7 +108,7 @@ export default function Navbar({
           >
             <span className="dot group-hover:scale-125 transition-transform" />
             <span className="truncate font-mono font-semibold tracking-tight">
-              sidharth.singh()
+              {(info.name || "sidharth.singh").toLowerCase().replace(/\s+/g, ".")}()
             </span>
           </a>
 
@@ -119,16 +121,14 @@ export default function Navbar({
                   key={item.id}
                   href={`#${item.id}`}
                   onClick={(e) => handleLinkClick(e, `#${item.id}`)}
-                  className={`group relative flex items-center gap-1 px-3 py-1.5 rounded-full transition-all duration-200 text-xs ${
-                    isActive
-                      ? "bg-[var(--paper)]/90 backdrop-blur-md text-[var(--ink)] shadow-xs border border-[var(--line-2)] font-semibold"
-                      : "text-[var(--ink-3)] hover:text-[var(--ink)] hover:bg-[var(--paper)]/50"
-                  }`}
+                  className={`group relative flex items-center gap-1 px-3 py-1.5 rounded-full transition-all duration-200 text-xs ${isActive
+                    ? "bg-[var(--paper)]/90 backdrop-blur-md text-[var(--ink)] shadow-xs border border-[var(--line-2)] font-semibold"
+                    : "text-[var(--ink-3)] hover:text-[var(--ink)] hover:bg-[var(--paper)]/50"
+                    }`}
                 >
                   <span
-                    className={`font-mono text-[10px] transition-colors ${
-                      isActive ? "text-orange-600 dark:text-orange-400 font-bold" : "text-orange-600/80 dark:text-orange-400/80 group-hover:text-orange-600 dark:group-hover:text-orange-400 font-semibold"
-                    }`}
+                    className={`font-mono text-[10px] transition-colors ${isActive ? "text-orange-600 dark:text-orange-400 font-bold" : "text-orange-600/80 dark:text-orange-400/80 group-hover:text-orange-600 dark:group-hover:text-orange-400 font-semibold"
+                      }`}
                   >
                     {item.num}
                   </span>
@@ -178,7 +178,7 @@ export default function Navbar({
             </button>
 
             <a
-              href={PERSONAL_INFO.resumeUrl}
+              href={info.resumeUrl || PERSONAL_INFO.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => onActionClick && onActionClick()}
@@ -219,11 +219,10 @@ export default function Navbar({
           return (
             <button
               key={item.id}
-              className={`mm-item flex items-center justify-between p-3.5 rounded-xl transition-all ${
-                isActive
-                  ? "bg-[var(--paper-2)] border border-orange-600/30 dark:border-orange-400/30 text-orange-600 dark:text-orange-400 font-bold"
-                  : "text-[var(--ink-2)] hover:bg-[var(--paper-2)]"
-              }`}
+              className={`mm-item flex items-center justify-between p-3.5 rounded-xl transition-all ${isActive
+                ? "bg-[var(--paper-2)] border border-orange-600/30 dark:border-orange-400/30 text-orange-600 dark:text-orange-400 font-bold"
+                : "text-[var(--ink-2)] hover:bg-[var(--paper-2)]"
+                }`}
               onClick={(e) => handleLinkClick(e, `#${item.id}`)}
               type="button"
             >
@@ -279,7 +278,7 @@ export default function Navbar({
 
           <div className="flex flex-col gap-2">
             <a
-              href={PERSONAL_INFO.resumeUrl}
+              href={info.resumeUrl || PERSONAL_INFO.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary justify-center w-full"

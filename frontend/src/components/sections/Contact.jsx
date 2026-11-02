@@ -11,20 +11,21 @@ import ContactForm from "../common/ContactForm";
  * Direct communication portal with live Web3Forms message submission,
  * copyable contact channels, 3D Tilt perspective, and interactive 3D Geo-Sphere marking Bengaluru, India.
  */
-export default function Contact({ onActionClick, theme = "dark" }) {
+export default function Contact({ onActionClick, theme = "dark", personalInfo }) {
+  const info = personalInfo || PERSONAL_INFO;
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
 
   const handleCopyEmail = () => {
     if (onActionClick) onActionClick();
-    navigator.clipboard.writeText(PERSONAL_INFO.email);
+    navigator.clipboard.writeText(info.email);
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2200);
   };
 
   const handleCopyPhone = () => {
     if (onActionClick) onActionClick();
-    navigator.clipboard.writeText(PERSONAL_INFO.phone);
+    navigator.clipboard.writeText(info.phone);
     setCopiedPhone(true);
     setTimeout(() => setCopiedPhone(false), 2200);
   };
@@ -80,7 +81,7 @@ export default function Contact({ onActionClick, theme = "dark" }) {
                 </button>
 
                 <a
-                  href={`mailto:${PERSONAL_INFO.email}`}
+                  href={`mailto:${info.email}`}
                   onClick={handleClick}
                   className="btn btn-ghost"
                 >
@@ -89,7 +90,7 @@ export default function Contact({ onActionClick, theme = "dark" }) {
                 </a>
 
                 <a
-                  href={PERSONAL_INFO.linkedin}
+                  href={info.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleClick}
@@ -133,7 +134,7 @@ export default function Contact({ onActionClick, theme = "dark" }) {
               >
                 <span className="lbl flex-shrink-0">EMAIL:</span>
                 <span className="val min-w-0 flex items-center gap-2">
-                  <span className="truncate">{PERSONAL_INFO.email}</span>
+                  <span className="truncate">{info.email}</span>
                   {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400 flex-shrink-0" /> : <Copy className="w-3.5 h-3.5 flex-shrink-0" />}
                 </span>
               </div>
@@ -148,13 +149,13 @@ export default function Contact({ onActionClick, theme = "dark" }) {
               >
                 <span className="lbl flex-shrink-0">PHONE:</span>
                 <span className="val min-w-0 flex items-center gap-2">
-                  <span className="truncate">{PERSONAL_INFO.phone}</span>
+                  <span className="truncate">{info.phone}</span>
                   {copiedPhone ? <Check className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400 flex-shrink-0" /> : <Phone className="w-3.5 h-3.5 flex-shrink-0" />}
                 </span>
               </div>
 
               <a
-                href={PERSONAL_INFO.linkedin}
+                href={info.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleClick}
@@ -168,7 +169,7 @@ export default function Contact({ onActionClick, theme = "dark" }) {
               </a>
 
               <a
-                href={PERSONAL_INFO.github}
+                href={info.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleClick}
@@ -182,7 +183,7 @@ export default function Contact({ onActionClick, theme = "dark" }) {
               </a>
 
               <a
-                href={PERSONAL_INFO.showoffUrl}
+                href={info.showoffUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleClick}
@@ -196,7 +197,7 @@ export default function Contact({ onActionClick, theme = "dark" }) {
               </a>
 
               <a
-                href={PERSONAL_INFO.chatAppUrl}
+                href={info.chatAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleClick}
@@ -216,7 +217,7 @@ export default function Contact({ onActionClick, theme = "dark" }) {
                   <span>ENGINEERING PHILOSOPHY</span>
                 </div>
                 <p className="text-xs italic text-[var(--ink)] leading-relaxed">
-                  "{PERSONAL_INFO.personalMotto}"
+                  "{info.personalMotto}"
                 </p>
                 <div className="mt-3 pt-3 border-t border-[var(--line)]/50 flex items-center justify-between text-[11px] font-mono text-[var(--muted)]">
                   <span className="flex items-center gap-1.5">

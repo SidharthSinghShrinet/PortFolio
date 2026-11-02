@@ -6,7 +6,8 @@ import { PERSONAL_INFO } from "../../data/portfolioData";
  * Footer Component
  * Shows live uptime tracker, service health indicator, and back-to-top shortcut.
  */
-export default function Footer({ onActionClick }) {
+export default function Footer({ onActionClick, personalInfo }) {
+  const info = personalInfo || PERSONAL_INFO;
   const [secondsElapsed, setSecondsElapsed] = useState(0);
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export default function Footer({ onActionClick }) {
 
         <div className="flex items-center gap-4 flex-wrap">
           <a
-            href={PERSONAL_INFO.portfolioV1Url}
+            href={info.portfolioV1Url || PERSONAL_INFO.portfolioV1Url}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-orange-500 transition-colors font-mono text-[11px]"
@@ -50,7 +51,7 @@ export default function Footer({ onActionClick }) {
           </a>
           <span className="opacity-40">/</span>
           <span className="opacity-80">
-            © 2026 {PERSONAL_INFO.name} · {PERSONAL_INFO.title}
+            © 2026 {info.name || PERSONAL_INFO.name} · {info.title || PERSONAL_INFO.title}
           </span>
           <button
             onClick={scrollToTop}

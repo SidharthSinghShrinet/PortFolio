@@ -7,7 +7,8 @@ import SectionHeader from "../common/SectionHeader";
  * TechStack Component
  * Categorized interactive 3D skill cards with tilt inertia, specular glare, and monospace headers.
  */
-export default function TechStack({ onActionClick }) {
+export default function TechStack({ onActionClick, techCategories }) {
+  const categories = techCategories && techCategories.length > 0 ? techCategories : TECH_CATEGORIES;
   const handleChipClick = () => {
     if (onActionClick) onActionClick();
   };
@@ -28,7 +29,7 @@ export default function TechStack({ onActionClick }) {
         />
 
         <div className="tech-grid">
-          {TECH_CATEGORIES.map((cat, idx) => (
+          {categories.map((cat, idx) => (
             <TiltCard
               key={idx}
               maxTilt={3.5}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "./hooks/useTheme";
 import { useAudio } from "./hooks/useAudio";
+import { usePortfolioDb } from "./hooks/usePortfolioDb";
 
 // Layout components
 import Sysbar from "./components/layout/Sysbar";
@@ -23,6 +24,7 @@ import CommandPalette from "./components/modals/CommandPalette";
 import BootLoader from "./components/common/BootLoader";
 import ScrollProgress from "./components/common/ScrollProgress";
 import ThreeDBackground from "./components/common/ThreeDBackground";
+import AdminModal from "./components/admin/AdminModal";
 
 /**
  * Root Portfolio Application Component
@@ -31,11 +33,30 @@ import ThreeDBackground from "./components/common/ThreeDBackground";
 export default function App() {
   const { theme, toggleTheme } = useTheme();
   const { audioEnabled, toggleAudio, playClick, playBlip, playWarp } = useAudio();
+  const {
+    projects,
+    stats,
+    nowData,
+    personalInfo,
+    experiences,
+    techCategories,
+    educationData,
+    rawDbData,
+    refresh,
+  } = usePortfolioDb();
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [adminOpen, setAdminOpen] = useState(false);
 
-  // Global hotkeys for command palette (⌘K, Ctrl+K, /)
+  // Global hotkeys for command palette (⌘K, Ctrl+K, /) and secret Admin portal (Ctrl+Shift+U)
   useEffect(() => {
     const handleKeyDown = (e) => {
+      // Secret Admin Hotkey: Ctrl + Shift + U (or Ctrl + Alt + U)
+      if (e.ctrlKey && (e.shiftKey || e.altKey) && e.key.toLowerCase() === "u") {
+        e.preventDefault();
+        setAdminOpen((prev) => !prev);
+        return;
+      }
+
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setPaletteOpen((prev) => !prev);
@@ -50,6 +71,22 @@ export default function App() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // Listen for direct #admin or #/admin URL routing
+  useEffect(() => {
+    const checkAdminHash = () => {
+      if (
+        window.location.hash === "#admin" ||
+        window.location.hash === "#/admin"
+      ) {
+        setAdminOpen(true);
+      }
+    };
+
+    checkAdminHash();
+    window.addEventListener("hashchange", checkAdminHash);
+    return () => window.removeEventListener("hashchange", checkAdminHash);
   }, []);
 
   return (
@@ -84,27 +121,33 @@ export default function App() {
         toggleAudio={toggleAudio}
         openPalette={() => setPaletteOpen(true)}
         onActionClick={playClick}
+        personalInfo={personalInfo}
       />
 
       {/* Main Content Sections */}
       <main className="relative z-10 flex-1" role="main">
-        <Hero onActionClick={playClick} />
+        <Hero
+          onActionClick={playClick}
+          onOpenAdmin={() => setAdminOpen(true)}
+          personalInfo={personalInfo}
+        />
         <div className="page">
-          <StatsBar />
+          <StatsBar stats={stats} />
         </div>
-        <Experience onActionClick={playClick} />
-        <TechStack onActionClick={playClick} />
+        <Experience onActionClick={playClick} experiences={experiences} />
+        <TechStack onActionClick={playClick} techCategories={techCategories} />
         <Projects
           onActionClick={playClick}
           openPalette={() => setPaletteOpen(true)}
+          projects={projects}
         />
-        <NowSection />
-        <Activity onCellHover={playBlip} />
-        <Contact onActionClick={playClick} theme={theme} />
+        <NowSection nowData={nowData} />
+        <Activity onCellHover={playBlip} educationData={educationData} personalInfo={personalInfo} />
+        <Contact onActionClick={playClick} theme={theme} personalInfo={personalInfo} />
       </main>
 
       {/* Footer */}
-      <Footer onActionClick={playClick} />
+      <Footer onActionClick={playClick} personalInfo={personalInfo} />
 
       {/* Command Palette Modal */}
       <CommandPalette
@@ -116,6 +159,17 @@ export default function App() {
         toggleAudio={toggleAudio}
         onActionClick={playClick}
         onOpenSound={playWarp}
+        onOpenAdmin={() => setAdminOpen(true)}
+        personalInfo={personalInfo}
+        projects={projects}
+      />
+
+      {/* Administrative Control Portal (Hidden / Protected by Supabase Auth) */}
+      <AdminModal
+        isOpen={adminOpen}
+        onClose={() => setAdminOpen(false)}
+        onRefreshData={refresh}
+        rawDbData={rawDbData}
       />
     </div>
   );

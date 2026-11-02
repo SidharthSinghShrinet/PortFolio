@@ -8,7 +8,8 @@ import InteractiveTerminal from "./InteractiveTerminal";
  * Hero Component
  * Displays role headline, bio narrative, 3D tilt portrait card, and interactive CLI terminal sandbox.
  */
-export default function Hero({ onActionClick }) {
+export default function Hero({ onActionClick, onOpenAdmin, personalInfo }) {
+  const info = personalInfo || PERSONAL_INFO;
   const handleInteractiveClick = () => {
     if (onActionClick) onActionClick();
   };
@@ -21,22 +22,34 @@ export default function Hero({ onActionClick }) {
           <div>
             <div className="hero-status">
               <span className="live" />
-              <span>{PERSONAL_INFO.roleStatus}</span>
+              <span>{info.roleStatus}</span>
             </div>
 
             <h1>
-              I build scalable enterprise systems &amp;{" "}
-              <span className="accent-word">production-grade</span> platforms.
+              {info.headline ? (
+                info.headline
+              ) : (
+                <>
+                  I build scalable enterprise systems &amp;{" "}
+                  <span className="accent-word">production-grade</span> platforms.
+                </>
+              )}
             </h1>
 
             <p className="hero-sub">
-              Full Stack Developer (B.Tech CSE) with <b>1.5+ years of experience</b>, <b>60+ React projects</b>, and <b>200+ LeetCode problems</b> solved. Hands-on domain experience in automotive dealership ERP systems, HR management, and e-commerce with low-latency API optimization (<b>~100ms</b> under heavy transaction load).
+              {info.bio ? (
+                info.bio
+              ) : (
+                <>
+                  Full Stack Developer (B.Tech CSE) with <b>1.5+ years of experience</b>, <b>60+ React projects</b>, and <b>200+ LeetCode problems</b> solved. Hands-on domain experience in automotive dealership ERP systems, HR management, and e-commerce with low-latency API optimization (<b>~100ms</b> under heavy transaction load).
+                </>
+              )}
             </p>
 
             <div className="hero-meta">
               <span>
                 <MapPin className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
-                {PERSONAL_INFO.location}
+                {info.location}
               </span>
               <span>
                 <Briefcase className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
@@ -71,7 +84,7 @@ export default function Hero({ onActionClick }) {
               </a>
 
               <a
-                href={PERSONAL_INFO.resumeUrl}
+                href={info.resumeUrl || PERSONAL_INFO.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleInteractiveClick}
@@ -98,20 +111,20 @@ export default function Hero({ onActionClick }) {
             <TiltCard maxTilt={4.5} glare={true} className="rounded-[var(--radius-lg)] w-full max-w-full">
               <div className="photo-card" style={{ width: "100%", height: "100%" }}>
                 <img
-                  src={PERSONAL_INFO.profileImg}
-                  alt={`${PERSONAL_INFO.name} - ${PERSONAL_INFO.title}`}
+                  src={info.profileImg || PERSONAL_INFO.profileImg}
+                  alt={`${info.name || PERSONAL_INFO.name} - ${info.title || PERSONAL_INFO.title}`}
                   loading="eager"
                 />
-                <div className="photo-corner">{PERSONAL_INFO.photoCorner}</div>
+                <div className="photo-corner">{info.photoCorner || PERSONAL_INFO.photoCorner || "KA/BLR"}</div>
                 <div className="photo-tag">
                   <span className="ring" />
-                  <span>{PERSONAL_INFO.photoTag}</span>
+                  <span>{info.photoTag || PERSONAL_INFO.photoTag}</span>
                 </div>
               </div>
             </TiltCard>
 
             {/* Playable Interactive Terminal CLI */}
-            <InteractiveTerminal onActionClick={onActionClick} />
+            <InteractiveTerminal onActionClick={onActionClick} onOpenAdmin={onOpenAdmin} personalInfo={info} />
           </div>
         </div>
       </div>

@@ -1,0 +1,33 @@
+name: Supabase Database Keep-Alive
+
+on:
+  schedule:
+    # Runs at 00:00 UTC every Monday and Thursday (every 3-4 days)
+    - cron: "0 0 * * 1,4"
+  workflow_dispatch: # Allows manual trigger from GitHub Actions UI
+
+jobs:
+  ping-supabase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase Database Endpoint
+        run: |
+          echo "Pinging Supabase database to reset 7-day inactivity counter..."
+          
+          API_KEY="${{ secrets.VITE_SUPABASE_ANON_KEY }}"
+          if [ -z "$API_KEY" ]; then
+            API_KEY="sb_publishable_pwxcBeEWCClw5d7GHFJfWg_2uTxmlaR"
+          fi
+          
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X GET \
+            "https://qwpvsgmqoibghouteqlc.supabase.co/rest/v1/projects?select=id&limit=1" \
+            -H "apikey: $API_KEY" \
+            -H "Authorization: Bearer $API_KEY")
+          
+          echo "Supabase Response Status Code: $RESPONSE"
+          if [ "$RESPONSE" -ge 200 ] && [ "$RESPONSE" -lt 400 ]; then
+            echo "Keep-alive ping successful. Inactivity timer reset."
+          else
+            echo "Warning: Response code $RESPONSE received."
+            exit 1
+          fi
