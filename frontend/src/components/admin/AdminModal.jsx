@@ -319,6 +319,23 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
+  // Lock background scroll and completely disable horizontal axis
+  useEffect(() => {
+    if (isOpen) {
+      const prevBodyOverflow = document.body.style.overflow;
+      const prevBodyOverflowX = document.body.style.overflowX;
+      const prevHtmlOverflowX = document.documentElement.style.overflowX;
+      document.body.style.overflow = "hidden";
+      document.body.style.overflowX = "hidden";
+      document.documentElement.style.overflowX = "hidden";
+      return () => {
+        document.body.style.overflow = prevBodyOverflow;
+        document.body.style.overflowX = prevBodyOverflowX;
+        document.documentElement.style.overflowX = prevHtmlOverflowX;
+      };
+    }
+  }, [isOpen]);
+
   const showNotification = (type, text) => {
     setStatusMsg({ type, text });
     setTimeout(() => {
@@ -625,13 +642,15 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
 
   return (
     <div
-      className="fixed inset-0 z-50 flex flex-col w-screen h-screen max-w-full max-h-screen bg-[var(--paper)] text-[var(--ink)] overflow-x-hidden overflow-y-hidden animate-fadeIn"
+      className="fixed inset-0 z-[100] flex flex-col w-full h-[100dvh] max-w-full bg-[var(--paper)] text-[var(--ink)] overflow-x-hidden overflow-y-hidden animate-fadeIn"
+      style={{ width: "100%", maxWidth: "100%", overflowX: "hidden" }}
       role="dialog"
       aria-modal="true"
     >
       <div
         ref={modalRef}
         className="w-full h-full flex flex-col bg-[var(--paper)] text-[var(--ink)] overflow-x-hidden overflow-y-hidden"
+        style={{ width: "100%", maxWidth: "100%", overflowX: "hidden" }}
       >
         {/* Top Header */}
         <div className="w-full border-b border-[var(--line)] bg-[var(--paper-2)]/90 backdrop-blur shrink-0 px-3 sm:px-6 py-2.5 sm:py-3.5">
@@ -1035,9 +1054,9 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                           rawDbData?.projects?.map((p) => (
                             <div
                               key={p.id}
-                              className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 hover:border-orange-500/40 transition-all"
+                              className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 hover:border-orange-500/40 transition-all w-full min-w-0 max-w-full overflow-hidden"
                             >
-                              <div className="flex items-center gap-3 min-w-0 w-full sm:w-auto">
+                              <div className="flex items-start sm:items-center gap-3 min-w-0 w-full flex-1 overflow-hidden">
                                 {p.image_url ? (
                                   <img
                                     src={p.image_url}
@@ -1049,16 +1068,16 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                                     IMG
                                   </div>
                                 )}
-                                <div className="min-w-0 flex-1">
-                                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                                    <h4 className="text-sm font-bold text-[var(--ink)] truncate font-mono">
+                                <div className="min-w-0 flex-1 overflow-hidden">
+                                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 min-w-0">
+                                    <h4 className="text-sm font-bold text-[var(--ink)] truncate font-mono min-w-0">
                                       {p.title}
                                     </h4>
-                                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/20 whitespace-nowrap">
+                                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/20 shrink-0 whitespace-nowrap">
                                       {p.category}
                                     </span>
                                   </div>
-                                  <p className="text-xs text-[var(--muted)] truncate mt-0.5 max-w-md">
+                                  <p className="text-xs text-[var(--muted)] truncate mt-0.5 w-full min-w-0">
                                     {p.description}
                                   </p>
                                 </div>
@@ -1637,20 +1656,20 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                           rawDbData?.experiences?.map((exp) => (
                             <div
                               key={exp.id}
-                              className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 hover:border-orange-500/40 transition-all"
+                              className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 hover:border-orange-500/40 transition-all w-full min-w-0 max-w-full overflow-hidden"
                             >
-                              <div className="min-w-0 flex-1">
-                                <div className="flex flex-wrap items-center gap-2">
-                                  <h4 className="text-sm font-bold text-[var(--ink)] font-mono">
+                              <div className="min-w-0 flex-1 overflow-hidden">
+                                <div className="flex flex-wrap items-center gap-2 min-w-0">
+                                  <h4 className="text-sm font-bold text-[var(--ink)] font-mono min-w-0 truncate">
                                     {exp.role} · {exp.company}
                                   </h4>
                                   {exp.is_latest && (
-                                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-bold whitespace-nowrap">
+                                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-bold whitespace-nowrap shrink-0">
                                       CURRENT
                                     </span>
                                   )}
                                 </div>
-                                <p className="text-xs text-[var(--muted)] font-mono mt-0.5">
+                                <p className="text-xs text-[var(--muted)] font-mono mt-0.5 w-full min-w-0 truncate">
                                   {exp.duration} · {exp.location}
                                 </p>
                               </div>
@@ -1882,13 +1901,13 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                           rawDbData?.techSkills?.map((skill) => (
                             <div
                               key={skill.id}
-                              className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 hover:border-orange-500/40 transition-all"
+                              className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 hover:border-orange-500/40 transition-all w-full min-w-0 max-w-full overflow-hidden"
                             >
-                              <div className="min-w-0 flex-1">
-                                <h4 className="text-sm font-bold text-[var(--ink)] font-mono">
+                              <div className="min-w-0 flex-1 overflow-hidden">
+                                <h4 className="text-sm font-bold text-[var(--ink)] font-mono min-w-0 truncate">
                                   {skill.category_index} // {skill.category_title}
                                 </h4>
-                                <p className="text-xs text-[var(--muted)] font-mono mt-1 break-words">
+                                <p className="text-xs text-[var(--muted)] font-mono mt-1 break-words w-full min-w-0">
                                   {Array.isArray(skill.skills) ? skill.skills.join(" · ") : skill.skills}
                                 </p>
                               </div>
@@ -2040,13 +2059,13 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                           rawDbData?.education?.map((edu) => (
                             <div
                               key={edu.id}
-                              className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 hover:border-orange-500/40 transition-all"
+                              className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 hover:border-orange-500/40 transition-all w-full min-w-0 max-w-full overflow-hidden"
                             >
-                              <div className="min-w-0 flex-1">
-                                <h4 className="text-sm font-bold text-[var(--ink)] font-mono">
+                              <div className="min-w-0 flex-1 overflow-hidden">
+                                <h4 className="text-sm font-bold text-[var(--ink)] font-mono min-w-0 truncate">
                                   {edu.degree}
                                 </h4>
-                                <p className="text-xs text-[var(--muted)] font-mono mt-0.5">
+                                <p className="text-xs text-[var(--muted)] font-mono mt-0.5 w-full min-w-0 truncate">
                                   {edu.institution} · {edu.period}
                                 </p>
                               </div>

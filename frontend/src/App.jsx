@@ -97,8 +97,8 @@ export default function App() {
       {/* React BootLoader — automatically unmounts upon completion */}
       <BootLoader />
 
-      {/* Top Scroll Indicator */}
-      <ScrollProgress />
+      {/* Top Scroll Indicator (hidden when Admin Panel is open) */}
+      {!adminOpen && <ScrollProgress />}
 
       {/* Interactive Custom Cursor */}
       <CustomCursor />
