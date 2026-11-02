@@ -625,70 +625,83 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/80 backdrop-blur-md animate-fadeIn"
+      className="fixed inset-0 z-50 flex flex-col w-screen h-screen max-w-full max-h-screen bg-[var(--paper)] text-[var(--ink)] overflow-x-hidden overflow-y-hidden animate-fadeIn"
       role="dialog"
       aria-modal="true"
     >
       <div
         ref={modalRef}
-        className="w-full max-w-5xl h-[94vh] sm:h-auto sm:max-h-[92vh] flex flex-col rounded-xl sm:rounded-2xl bg-[var(--paper)] text-[var(--ink)] border border-[var(--line)] shadow-2xl overflow-hidden"
+        className="w-full h-full flex flex-col bg-[var(--paper)] text-[var(--ink)] overflow-x-hidden overflow-y-hidden"
       >
         {/* Top Header */}
-        <div className="flex items-center justify-between px-3.5 sm:px-5 py-2.5 sm:py-3.5 border-b border-[var(--line)] bg-[var(--paper-2)]/60 gap-2 shrink-0">
-          <div className="flex items-center gap-2 min-w-0">
-            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-            <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-wider text-orange-600 dark:text-orange-400 truncate">
-              SYS.ADMIN // FULL CONTROL CENTER
-            </span>
-            {session && (
-              <span className="hidden md:inline-block text-[11px] font-mono px-2 py-0.5 rounded bg-[var(--paper-3)] border border-[var(--line)] text-[var(--muted)] truncate max-w-[200px]">
-                {session.user.email}
+        <div className="w-full border-b border-[var(--line)] bg-[var(--paper-2)]/90 backdrop-blur shrink-0 px-3 sm:px-6 py-2.5 sm:py-3.5">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+              <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-wider text-orange-600 dark:text-orange-400 truncate">
+                SYS.ADMIN // FULL CONTROL CENTER
               </span>
-            )}
-          </div>
+              {session && (
+                <span className="hidden md:inline-block text-[11px] font-mono px-2 py-0.5 rounded bg-[var(--paper-3)] border border-[var(--line)] text-[var(--muted)] truncate max-w-[200px]">
+                  {session.user.email}
+                </span>
+              )}
+            </div>
 
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            {session && (
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
               <button
-                onClick={handleLogout}
-                className="px-2 sm:px-2.5 py-1 text-xs font-mono rounded border border-rose-500/30 text-rose-500 hover:bg-rose-500/10 flex items-center gap-1 transition-colors cursor-pointer"
-                title="Logout"
+                onClick={onRefreshData}
+                className="px-2 sm:px-2.5 py-1 text-xs font-mono rounded text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-3)] border border-[var(--line)] flex items-center gap-1 cursor-pointer transition-colors"
+                title="Reload DB"
               >
-                <LogOut className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Logout</span>
+                <RefreshCw className="w-3.5 h-3.5 shrink-0" />
+                <span className="hidden sm:inline">Sync</span>
               </button>
-            )}
-            <button
-              onClick={onClose}
-              className="p-1 sm:p-1.5 rounded-lg text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-3)] transition-colors cursor-pointer"
-              title="Close (Esc)"
-            >
-              <X className="w-5 h-5" />
-            </button>
+              {session && (
+                <button
+                  onClick={handleLogout}
+                  className="px-2 sm:px-2.5 py-1 text-xs font-mono rounded border border-rose-500/30 text-rose-500 hover:bg-rose-500/10 flex items-center gap-1 transition-colors cursor-pointer"
+                  title="Logout"
+                >
+                  <LogOut className="w-3.5 h-3.5 shrink-0" />
+                  <span className="hidden sm:inline">Logout</span>
+                </button>
+              )}
+              <button
+                onClick={onClose}
+                className="p-1 sm:p-1.5 rounded-lg text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-3)] transition-colors cursor-pointer"
+                title="Close (Esc)"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Status notification banner */}
         {statusMsg.text && (
           <div
-            className={`px-3 sm:px-4 py-2 text-xs font-mono flex items-center gap-2 border-b shrink-0 ${statusMsg.type === "success"
+            className={`w-full border-b shrink-0 px-3 sm:px-6 py-2 text-xs font-mono ${statusMsg.type === "success"
               ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-500"
               : statusMsg.type === "error"
                 ? "bg-rose-500/10 border-rose-500/30 text-rose-500"
                 : "bg-blue-500/10 border-blue-500/30 text-blue-500"
               }`}
           >
-            {statusMsg.type === "success" ? (
-              <CheckCircle2 className="w-4 h-4 shrink-0" />
-            ) : (
-              <AlertCircle className="w-4 h-4 shrink-0" />
-            )}
-            <span className="break-words min-w-0">{statusMsg.text}</span>
+            <div className="max-w-7xl mx-auto w-full flex items-center gap-2 min-w-0">
+              {statusMsg.type === "success" ? (
+                <CheckCircle2 className="w-4 h-4 shrink-0" />
+              ) : (
+                <AlertCircle className="w-4 h-4 shrink-0" />
+              )}
+              <span className="break-words min-w-0">{statusMsg.text}</span>
+            </div>
           </div>
         )}
 
         {/* Body Content */}
-        <div className="flex-1 overflow-y-auto p-3 sm:p-5 md:p-6 overscroll-contain">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden w-full overscroll-contain">
+          <div className="max-w-7xl mx-auto w-full p-3 sm:p-6 md:p-8">
           {authChecking ? (
             <div className="py-20 flex flex-col items-center justify-center gap-3 text-[var(--muted)] font-mono text-xs">
               <Loader2 className="w-6 h-6 animate-spin text-orange-500" />
@@ -771,30 +784,133 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
             /* DASHBOARD TABS (Authenticated)                             */
             /* ========================================================== */
             <div>
-              {/* Tab Navigation */}
-              <div className="flex items-center gap-1.5 pb-3 mb-4 sm:mb-6 border-b border-[var(--line)] overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden shrink-0">
+              {/* Tab Navigation - Mobile (< sm): 2-Column Responsive Grid with ZERO horizontal scroll */}
+              <div className="grid grid-cols-2 gap-1.5 pb-3 mb-4 border-b border-[var(--line)] sm:hidden w-full">
                 <button
                   onClick={() => {
                     setActiveTab("projects");
                     setIsEditingProject(false);
                   }}
-                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "projects"
+                  className={`px-2.5 py-2 text-[11px] font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer w-full justify-start truncate ${activeTab === "projects"
+                    ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
+                    : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)] border border-[var(--line)]"
+                    }`}
+                >
+                  <Layers className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Projects ({rawDbData?.projects?.length || 0})</span>
+                </button>
+
+                <button
+                  onClick={() => setActiveTab("profile")}
+                  className={`px-2.5 py-2 text-[11px] font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer w-full justify-start truncate ${activeTab === "profile"
+                    ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
+                    : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)] border border-[var(--line)]"
+                    }`}
+                >
+                  <User className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Personal Info</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    setActiveTab("experience");
+                    setIsEditingExp(false);
+                  }}
+                  className={`px-2.5 py-2 text-[11px] font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer w-full justify-start truncate ${activeTab === "experience"
+                    ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
+                    : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)] border border-[var(--line)]"
+                    }`}
+                >
+                  <Briefcase className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Experience ({rawDbData?.experiences?.length || 0})</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    setActiveTab("skills");
+                    setIsEditingSkill(false);
+                  }}
+                  className={`px-2.5 py-2 text-[11px] font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer w-full justify-start truncate ${activeTab === "skills"
+                    ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
+                    : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)] border border-[var(--line)]"
+                    }`}
+                >
+                  <Code2 className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Skills ({rawDbData?.techSkills?.length || 0})</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    setActiveTab("education");
+                    setIsEditingEdu(false);
+                  }}
+                  className={`px-2.5 py-2 text-[11px] font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer w-full justify-start truncate ${activeTab === "education"
+                    ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
+                    : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)] border border-[var(--line)]"
+                    }`}
+                >
+                  <GraduationCap className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Education ({rawDbData?.education?.length || 0})</span>
+                </button>
+
+                <button
+                  onClick={() => setActiveTab("stats")}
+                  className={`px-2.5 py-2 text-[11px] font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer w-full justify-start truncate ${activeTab === "stats"
+                    ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
+                    : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)] border border-[var(--line)]"
+                    }`}
+                >
+                  <BarChart3 className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Stats &amp; Metrics</span>
+                </button>
+
+                <button
+                  onClick={() => setActiveTab("now")}
+                  className={`px-2.5 py-2 text-[11px] font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer w-full justify-start truncate ${activeTab === "now"
+                    ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
+                    : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)] border border-[var(--line)]"
+                    }`}
+                >
+                  <Compass className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Now &amp; Status</span>
+                </button>
+
+                <button
+                  onClick={() => setActiveTab("assets")}
+                  className={`px-2.5 py-2 text-[11px] font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer w-full justify-start truncate ${activeTab === "assets"
+                    ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
+                    : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)] border border-[var(--line)]"
+                    }`}
+                >
+                  <FileText className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Storage</span>
+                </button>
+              </div>
+
+              {/* Tab Navigation - Tablet & Desktop (>= sm): Horizontal Wrap Pills */}
+              <div className="hidden sm:flex flex-wrap items-center gap-1.5 pb-3 mb-6 border-b border-[var(--line)] w-full">
+                <button
+                  onClick={() => {
+                    setActiveTab("projects");
+                    setIsEditingProject(false);
+                  }}
+                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "projects"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <Layers className="w-4 h-4 shrink-0" />
                   <span>Projects ({rawDbData?.projects?.length || 0})</span>
                 </button>
 
                 <button
                   onClick={() => setActiveTab("profile")}
-                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "profile"
+                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "profile"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <User className="w-4 h-4 shrink-0" />
                   <span>Personal Info</span>
                 </button>
 
@@ -803,12 +919,12 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                     setActiveTab("experience");
                     setIsEditingExp(false);
                   }}
-                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "experience"
+                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "experience"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <Briefcase className="w-4 h-4 shrink-0" />
                   <span>Experience ({rawDbData?.experiences?.length || 0})</span>
                 </button>
 
@@ -817,12 +933,12 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                     setActiveTab("skills");
                     setIsEditingSkill(false);
                   }}
-                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "skills"
+                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "skills"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <Code2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <Code2 className="w-4 h-4 shrink-0" />
                   <span>Skills ({rawDbData?.techSkills?.length || 0})</span>
                 </button>
 
@@ -831,55 +947,46 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                     setActiveTab("education");
                     setIsEditingEdu(false);
                   }}
-                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "education"
+                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "education"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <GraduationCap className="w-4 h-4 shrink-0" />
                   <span>Education ({rawDbData?.education?.length || 0})</span>
                 </button>
 
                 <button
                   onClick={() => setActiveTab("stats")}
-                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "stats"
+                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "stats"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <BarChart3 className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <BarChart3 className="w-4 h-4 shrink-0" />
                   <span>Stats &amp; Metrics</span>
                 </button>
 
                 <button
                   onClick={() => setActiveTab("now")}
-                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "now"
+                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "now"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <Compass className="w-4 h-4 shrink-0" />
                   <span>Now &amp; Status</span>
                 </button>
 
                 <button
                   onClick={() => setActiveTab("assets")}
-                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "assets"
+                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "assets"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <FileText className="w-4 h-4 shrink-0" />
                   <span>Storage</span>
-                </button>
-
-                <button
-                  onClick={onRefreshData}
-                  className="ml-auto px-2.5 py-1.5 text-[11px] sm:text-xs font-mono rounded text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)] flex items-center gap-1 cursor-pointer shrink-0 whitespace-nowrap"
-                  title="Reload DB"
-                >
-                  <RefreshCw className="w-3.5 h-3.5 shrink-0" />
-                  <span className="hidden sm:inline">Sync</span>
                 </button>
               </div>
 
@@ -2513,6 +2620,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
               )}
             </div>
           )}
+          </div>
         </div>
       </div>
     </div>
