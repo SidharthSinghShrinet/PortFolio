@@ -625,33 +625,33 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/80 backdrop-blur-md animate-fadeIn"
       role="dialog"
       aria-modal="true"
     >
       <div
         ref={modalRef}
-        className="w-full max-w-5xl max-h-[92vh] flex flex-col rounded-2xl bg-[var(--paper)] text-[var(--ink)] border border-[var(--line)] shadow-2xl overflow-hidden"
+        className="w-full max-w-5xl h-[94vh] sm:h-auto sm:max-h-[92vh] flex flex-col rounded-xl sm:rounded-2xl bg-[var(--paper)] text-[var(--ink)] border border-[var(--line)] shadow-2xl overflow-hidden"
       >
         {/* Top Header */}
-        <div className="flex items-center justify-between px-5 py-3.5 border-b border-[var(--line)] bg-[var(--paper-2)]/60">
-          <div className="flex items-center gap-2.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-orange-600 dark:text-orange-400">
+        <div className="flex items-center justify-between px-3.5 sm:px-5 py-2.5 sm:py-3.5 border-b border-[var(--line)] bg-[var(--paper-2)]/60 gap-2 shrink-0">
+          <div className="flex items-center gap-2 min-w-0">
+            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+            <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-wider text-orange-600 dark:text-orange-400 truncate">
               SYS.ADMIN // FULL CONTROL CENTER
             </span>
             {session && (
-              <span className="hidden sm:inline-block text-[11px] font-mono px-2 py-0.5 rounded bg-[var(--paper-3)] border border-[var(--line)] text-[var(--muted)]">
+              <span className="hidden md:inline-block text-[11px] font-mono px-2 py-0.5 rounded bg-[var(--paper-3)] border border-[var(--line)] text-[var(--muted)] truncate max-w-[200px]">
                 {session.user.email}
               </span>
             )}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {session && (
               <button
                 onClick={handleLogout}
-                className="px-2.5 py-1 text-xs font-mono rounded border border-rose-500/30 text-rose-500 hover:bg-rose-500/10 flex items-center gap-1 transition-colors cursor-pointer"
+                className="px-2 sm:px-2.5 py-1 text-xs font-mono rounded border border-rose-500/30 text-rose-500 hover:bg-rose-500/10 flex items-center gap-1 transition-colors cursor-pointer"
                 title="Logout"
               >
                 <LogOut className="w-3.5 h-3.5" />
@@ -660,7 +660,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
             )}
             <button
               onClick={onClose}
-              className="p-1 rounded-lg text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-3)] transition-colors cursor-pointer"
+              className="p-1 sm:p-1.5 rounded-lg text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-3)] transition-colors cursor-pointer"
               title="Close (Esc)"
             >
               <X className="w-5 h-5" />
@@ -671,7 +671,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
         {/* Status notification banner */}
         {statusMsg.text && (
           <div
-            className={`px-4 py-2 text-xs font-mono flex items-center gap-2 border-b ${statusMsg.type === "success"
+            className={`px-3 sm:px-4 py-2 text-xs font-mono flex items-center gap-2 border-b shrink-0 ${statusMsg.type === "success"
               ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-500"
               : statusMsg.type === "error"
                 ? "bg-rose-500/10 border-rose-500/30 text-rose-500"
@@ -683,12 +683,12 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
             ) : (
               <AlertCircle className="w-4 h-4 shrink-0" />
             )}
-            <span>{statusMsg.text}</span>
+            <span className="break-words min-w-0">{statusMsg.text}</span>
           </div>
         )}
 
         {/* Body Content */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6">
+        <div className="flex-1 overflow-y-auto p-3 sm:p-5 md:p-6 overscroll-contain">
           {authChecking ? (
             <div className="py-20 flex flex-col items-center justify-center gap-3 text-[var(--muted)] font-mono text-xs">
               <Loader2 className="w-6 h-6 animate-spin text-orange-500" />
@@ -698,12 +698,12 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
             /* ========================================================== */
             /* LOGIN FORM (Unauthenticated)                               */
             /* ========================================================== */
-            <div className="max-w-md mx-auto py-10">
+            <div className="max-w-md mx-auto py-6 sm:py-10 px-1 sm:px-0">
               <div className="text-center mb-6">
                 <div className="inline-flex p-3 rounded-2xl bg-orange-500/10 text-orange-600 dark:text-orange-400 mb-3 border border-orange-500/20">
                   <Lock className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold font-mono text-[var(--ink)]">
+                <h3 className="text-lg sm:text-xl font-bold font-mono text-[var(--ink)]">
                   ADMINISTRATIVE_GATE
                 </h3>
                 <p className="text-xs font-mono text-[var(--muted)] mt-1">
@@ -772,29 +772,29 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
             /* ========================================================== */
             <div>
               {/* Tab Navigation */}
-              <div className="flex flex-wrap gap-1.5 pb-4 mb-6 border-b border-[var(--line)]">
+              <div className="flex items-center gap-1.5 pb-3 mb-4 sm:mb-6 border-b border-[var(--line)] overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden shrink-0">
                 <button
                   onClick={() => {
                     setActiveTab("projects");
                     setIsEditingProject(false);
                   }}
-                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "projects"
+                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "projects"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <Layers className="w-4 h-4" />
+                  <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                   <span>Projects ({rawDbData?.projects?.length || 0})</span>
                 </button>
 
                 <button
                   onClick={() => setActiveTab("profile")}
-                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "profile"
+                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "profile"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <User className="w-4 h-4" />
+                  <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                   <span>Personal Info</span>
                 </button>
 
@@ -803,12 +803,12 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                     setActiveTab("experience");
                     setIsEditingExp(false);
                   }}
-                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "experience"
+                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "experience"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <Briefcase className="w-4 h-4" />
+                  <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                   <span>Experience ({rawDbData?.experiences?.length || 0})</span>
                 </button>
 
@@ -817,12 +817,12 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                     setActiveTab("skills");
                     setIsEditingSkill(false);
                   }}
-                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "skills"
+                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "skills"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <Code2 className="w-4 h-4" />
+                  <Code2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                   <span>Skills ({rawDbData?.techSkills?.length || 0})</span>
                 </button>
 
@@ -831,54 +831,54 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                     setActiveTab("education");
                     setIsEditingEdu(false);
                   }}
-                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "education"
+                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "education"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <GraduationCap className="w-4 h-4" />
+                  <GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                   <span>Education ({rawDbData?.education?.length || 0})</span>
                 </button>
 
                 <button
                   onClick={() => setActiveTab("stats")}
-                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "stats"
+                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "stats"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <BarChart3 className="w-4 h-4" />
+                  <BarChart3 className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                   <span>Stats &amp; Metrics</span>
                 </button>
 
                 <button
                   onClick={() => setActiveTab("now")}
-                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "now"
+                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "now"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <Compass className="w-4 h-4" />
+                  <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                   <span>Now &amp; Status</span>
                 </button>
 
                 <button
                   onClick={() => setActiveTab("assets")}
-                  className={`px-3 py-1.5 text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === "assets"
+                  className={`px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0 whitespace-nowrap ${activeTab === "assets"
                     ? "bg-orange-500/15 border border-orange-500/40 text-orange-600 dark:text-orange-400 font-bold"
                     : "text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)]"
                     }`}
                 >
-                  <FileText className="w-4 h-4" />
+                  <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                   <span>Storage</span>
                 </button>
 
                 <button
                   onClick={onRefreshData}
-                  className="ml-auto px-2.5 py-1 text-xs font-mono rounded text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)] flex items-center gap-1 cursor-pointer"
+                  className="ml-auto px-2.5 py-1.5 text-[11px] sm:text-xs font-mono rounded text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--paper-2)] flex items-center gap-1 cursor-pointer shrink-0 whitespace-nowrap"
                   title="Reload DB"
                 >
-                  <RefreshCw className="w-3.5 h-3.5" />
+                  <RefreshCw className="w-3.5 h-3.5 shrink-0" />
                   <span className="hidden sm:inline">Sync</span>
                 </button>
               </div>
@@ -890,7 +890,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                 <div>
                   {!isEditingProject ? (
                     <div>
-                      <div className="flex items-center justify-between mb-4">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
                         <p className="text-xs font-mono text-[var(--muted)]">
                           Manage live production projects visible on your portfolio.
                         </p>
@@ -912,9 +912,9 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                             });
                             setIsEditingProject(true);
                           }}
-                          className="px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+                          className="w-full sm:w-auto justify-center px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
                         >
-                          <FolderPlus className="w-4 h-4" />
+                          <FolderPlus className="w-4 h-4 shrink-0" />
                           <span>Add New Project</span>
                         </button>
                       </div>
@@ -928,26 +928,26 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                           rawDbData?.projects?.map((p) => (
                             <div
                               key={p.id}
-                              className="p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-orange-500/40 transition-all"
+                              className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 hover:border-orange-500/40 transition-all"
                             >
-                              <div className="flex items-center gap-3 min-w-0">
+                              <div className="flex items-center gap-3 min-w-0 w-full sm:w-auto">
                                 {p.image_url ? (
                                   <img
                                     src={p.image_url}
                                     alt={p.title}
-                                    className="w-12 h-12 rounded-lg object-cover border border-[var(--line)] shrink-0"
+                                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-cover border border-[var(--line)] shrink-0"
                                   />
                                 ) : (
-                                  <div className="w-12 h-12 rounded-lg bg-[var(--paper-3)] border border-[var(--line)] flex items-center justify-center font-mono text-xs text-[var(--muted)] shrink-0">
+                                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[var(--paper-3)] border border-[var(--line)] flex items-center justify-center font-mono text-xs text-[var(--muted)] shrink-0">
                                     IMG
                                   </div>
                                 )}
-                                <div className="min-w-0">
-                                  <div className="flex items-center gap-2">
+                                <div className="min-w-0 flex-1">
+                                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                                     <h4 className="text-sm font-bold text-[var(--ink)] truncate font-mono">
                                       {p.title}
                                     </h4>
-                                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/20">
+                                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/20 whitespace-nowrap">
                                       {p.category}
                                     </span>
                                   </div>
@@ -957,7 +957,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                                 </div>
                               </div>
 
-                              <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                              <div className="flex items-center gap-2 shrink-0 self-end sm:self-center w-full sm:w-auto justify-end pt-2 sm:pt-0 border-t sm:border-t-0 border-[var(--line)]/50">
                                 {p.live_url && (
                                   <a
                                     href={p.live_url}
@@ -1146,7 +1146,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                         <label className="block text-xs font-mono text-[var(--muted)] mb-1">
                           PROJECT_IMAGE (URL or Upload)
                         </label>
-                        <div className="flex gap-2">
+                        <div className="flex flex-col sm:flex-row gap-2">
                           <input
                             type="text"
                             value={projectForm.image_url}
@@ -1154,9 +1154,9 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                               setProjectForm((prev) => ({ ...prev, image_url: e.target.value }))
                             }
                             placeholder="/showoff4u.png or https://..."
-                            className="flex-1 px-3 py-2 text-sm rounded-lg bg-[var(--paper-2)] border border-[var(--line)] text-[var(--ink)] font-mono focus:outline-none focus:border-orange-500"
+                            className="w-full sm:flex-1 min-w-0 px-3 py-2 text-sm rounded-lg bg-[var(--paper-2)] border border-[var(--line)] text-[var(--ink)] font-mono focus:outline-none focus:border-orange-500"
                           />
-                          <label className="px-3 py-2 rounded-lg bg-[var(--paper-3)] border border-[var(--line)] hover:border-orange-500 font-mono text-xs text-[var(--ink)] flex items-center gap-1.5 cursor-pointer shrink-0">
+                          <label className="w-full sm:w-auto justify-center px-3 py-2 rounded-lg bg-[var(--paper-3)] border border-[var(--line)] hover:border-orange-500 font-mono text-xs text-[var(--ink)] flex items-center gap-1.5 cursor-pointer shrink-0">
                             {uploadingImage ? (
                               <Loader2 className="w-4 h-4 animate-spin text-orange-500" />
                             ) : (
@@ -1173,17 +1173,17 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-end gap-2 pt-4 border-t border-[var(--line)]">
+                      <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 pt-4 border-t border-[var(--line)]">
                         <button
                           type="button"
                           onClick={() => setIsEditingProject(false)}
-                          className="px-4 py-2 rounded-lg font-mono text-xs text-[var(--muted)] hover:text-[var(--ink)] cursor-pointer"
+                          className="w-full sm:w-auto text-center px-4 py-2 rounded-lg font-mono text-xs text-[var(--muted)] hover:text-[var(--ink)] cursor-pointer"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
-                          className="px-5 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer"
+                          className="w-full sm:w-auto justify-center px-5 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer"
                         >
                           <Save className="w-4 h-4" />
                           <span>Save Project</span>
@@ -1370,17 +1370,18 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                       <label className="block text-xs font-mono text-[var(--muted)] mb-1">
                         RESUME_PDF_URL
                       </label>
-                      <div className="flex gap-2">
+                      <div className="flex flex-col sm:flex-row gap-2">
                         <input
                           type="text"
                           value={personalForm.resume_url}
                           onChange={(e) =>
                             setPersonalForm((prev) => ({ ...prev, resume_url: e.target.value }))
                           }
-                          className="flex-1 px-3 py-2 text-sm rounded-lg bg-[var(--paper-2)] border border-[var(--line)] text-[var(--ink)] font-mono"
+                          className="w-full sm:flex-1 min-w-0 px-3 py-2 text-sm rounded-lg bg-[var(--paper-2)] border border-[var(--line)] text-[var(--ink)] font-mono"
                         />
-                        <label className="px-3 py-2 rounded-lg bg-[var(--paper-3)] border border-[var(--line)] font-mono text-xs cursor-pointer shrink-0">
-                          {uploadingResume ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                        <label className="w-full sm:w-auto justify-center flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[var(--paper-3)] border border-[var(--line)] hover:border-orange-500 font-mono text-xs cursor-pointer shrink-0">
+                          {uploadingResume ? <Loader2 className="w-4 h-4 animate-spin text-orange-500" /> : <Upload className="w-4 h-4 text-orange-500" />}
+                          <span>Upload PDF</span>
                           <input
                             type="file"
                             accept=".pdf"
@@ -1408,17 +1409,18 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                       <label className="block text-xs font-mono text-[var(--muted)] mb-1">
                         PROFILE_IMAGE_URL
                       </label>
-                      <div className="flex gap-2">
+                      <div className="flex flex-col sm:flex-row gap-2">
                         <input
                           type="text"
                           value={personalForm.profile_img}
                           onChange={(e) =>
                             setPersonalForm((prev) => ({ ...prev, profile_img: e.target.value }))
                           }
-                          className="flex-1 px-3 py-2 text-sm rounded-lg bg-[var(--paper-2)] border border-[var(--line)] text-[var(--ink)] font-mono"
+                          className="w-full sm:flex-1 min-w-0 px-3 py-2 text-sm rounded-lg bg-[var(--paper-2)] border border-[var(--line)] text-[var(--ink)] font-mono"
                         />
-                        <label className="px-3 py-2 rounded-lg bg-[var(--paper-3)] border border-[var(--line)] font-mono text-xs cursor-pointer shrink-0">
-                          {uploadingAvatar ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                        <label className="w-full sm:w-auto justify-center flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[var(--paper-3)] border border-[var(--line)] hover:border-orange-500 font-mono text-xs cursor-pointer shrink-0">
+                          {uploadingAvatar ? <Loader2 className="w-4 h-4 animate-spin text-orange-500" /> : <Upload className="w-4 h-4 text-orange-500" />}
+                          <span>Upload Image</span>
                           <input
                             type="file"
                             accept="image/*"
@@ -1476,7 +1478,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                   <div className="flex justify-end pt-4 border-t border-[var(--line)]">
                     <button
                       type="submit"
-                      className="px-5 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer"
+                      className="w-full sm:w-auto justify-center px-5 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer"
                     >
                       <Save className="w-4 h-4" />
                       <span>Save Personal Info</span>
@@ -1492,7 +1494,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                 <div>
                   {!isEditingExp ? (
                     <div>
-                      <div className="flex items-center justify-between mb-4">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
                         <p className="text-xs font-mono text-[var(--muted)]">
                           Manage your work history, enterprise accomplishments, and roles.
                         </p>
@@ -1512,9 +1514,9 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                             });
                             setIsEditingExp(true);
                           }}
-                          className="px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+                          className="w-full sm:w-auto justify-center px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
                         >
-                          <Plus className="w-4 h-4" />
+                          <Plus className="w-4 h-4 shrink-0" />
                           <span>Add Work Experience</span>
                         </button>
                       </div>
@@ -1528,15 +1530,15 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                           rawDbData?.experiences?.map((exp) => (
                             <div
                               key={exp.id}
-                              className="p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-orange-500/40 transition-all"
+                              className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 hover:border-orange-500/40 transition-all"
                             >
-                              <div>
-                                <div className="flex items-center gap-2">
+                              <div className="min-w-0 flex-1">
+                                <div className="flex flex-wrap items-center gap-2">
                                   <h4 className="text-sm font-bold text-[var(--ink)] font-mono">
                                     {exp.role} · {exp.company}
                                   </h4>
                                   {exp.is_latest && (
-                                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-bold">
+                                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-bold whitespace-nowrap">
                                       CURRENT
                                     </span>
                                   )}
@@ -1546,7 +1548,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                                 </p>
                               </div>
 
-                              <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                              <div className="flex items-center gap-2 shrink-0 self-end sm:self-center w-full sm:w-auto justify-end pt-2 sm:pt-0 border-t sm:border-t-0 border-[var(--line)]/50">
                                 <button
                                   onClick={() => {
                                     setExpForm({
@@ -1692,7 +1694,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                         />
                       </div>
 
-                      <div className="flex items-center gap-6 pt-2">
+                      <div className="flex flex-wrap items-center justify-between sm:justify-start gap-4 sm:gap-6 pt-2">
                         <label className="flex items-center gap-2 text-xs font-mono text-[var(--ink)] cursor-pointer">
                           <input
                             type="checkbox"
@@ -1714,17 +1716,17 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                         </div>
                       </div>
 
-                      <div className="flex justify-end gap-2 pt-4 border-t border-[var(--line)]">
+                      <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 pt-4 border-t border-[var(--line)]">
                         <button
                           type="button"
                           onClick={() => setIsEditingExp(false)}
-                          className="px-4 py-2 rounded-lg font-mono text-xs text-[var(--muted)] hover:text-[var(--ink)] cursor-pointer"
+                          className="w-full sm:w-auto text-center px-4 py-2 rounded-lg font-mono text-xs text-[var(--muted)] hover:text-[var(--ink)] cursor-pointer"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
-                          className="px-5 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer"
+                          className="w-full sm:w-auto justify-center px-5 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer"
                         >
                           <Save className="w-4 h-4" />
                           <span>Save Experience</span>
@@ -1742,7 +1744,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                 <div>
                   {!isEditingSkill ? (
                     <div>
-                      <div className="flex items-center justify-between mb-4">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
                         <p className="text-xs font-mono text-[var(--muted)]">
                           Manage technical categories and skill pills in your Technical Arsenal.
                         </p>
@@ -1757,9 +1759,9 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                             });
                             setIsEditingSkill(true);
                           }}
-                          className="px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+                          className="w-full sm:w-auto justify-center px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
                         >
-                          <Plus className="w-4 h-4" />
+                          <Plus className="w-4 h-4 shrink-0" />
                           <span>Add Skill Category</span>
                         </button>
                       </div>
@@ -1773,18 +1775,18 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                           rawDbData?.techSkills?.map((skill) => (
                             <div
                               key={skill.id}
-                              className="p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-orange-500/40 transition-all"
+                              className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 hover:border-orange-500/40 transition-all"
                             >
-                              <div>
+                              <div className="min-w-0 flex-1">
                                 <h4 className="text-sm font-bold text-[var(--ink)] font-mono">
                                   {skill.category_index} // {skill.category_title}
                                 </h4>
-                                <p className="text-xs text-[var(--muted)] font-mono mt-1">
+                                <p className="text-xs text-[var(--muted)] font-mono mt-1 break-words">
                                   {Array.isArray(skill.skills) ? skill.skills.join(" · ") : skill.skills}
                                 </p>
                               </div>
 
-                              <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                              <div className="flex items-center gap-2 shrink-0 self-end sm:self-center w-full sm:w-auto justify-end pt-2 sm:pt-0 border-t sm:border-t-0 border-[var(--line)]/50">
                                 <button
                                   onClick={() => {
                                     setSkillForm({
@@ -1872,17 +1874,17 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                         />
                       </div>
 
-                      <div className="flex justify-end gap-2 pt-4 border-t border-[var(--line)]">
+                      <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 pt-4 border-t border-[var(--line)]">
                         <button
                           type="button"
                           onClick={() => setIsEditingSkill(false)}
-                          className="px-4 py-2 rounded-lg font-mono text-xs text-[var(--muted)] hover:text-[var(--ink)] cursor-pointer"
+                          className="w-full sm:w-auto text-center px-4 py-2 rounded-lg font-mono text-xs text-[var(--muted)] hover:text-[var(--ink)] cursor-pointer"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
-                          className="px-5 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer"
+                          className="w-full sm:w-auto justify-center px-5 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer"
                         >
                           <Save className="w-4 h-4" />
                           <span>Save Skills</span>
@@ -1900,7 +1902,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                 <div>
                   {!isEditingEdu ? (
                     <div>
-                      <div className="flex items-center justify-between mb-4">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
                         <p className="text-xs font-mono text-[var(--muted)]">
                           Manage degrees, certifications, and academic qualifications.
                         </p>
@@ -1915,9 +1917,9 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                             });
                             setIsEditingEdu(true);
                           }}
-                          className="px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+                          className="w-full sm:w-auto justify-center px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
                         >
-                          <Plus className="w-4 h-4" />
+                          <Plus className="w-4 h-4 shrink-0" />
                           <span>Add Education</span>
                         </button>
                       </div>
@@ -1931,9 +1933,9 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                           rawDbData?.education?.map((edu) => (
                             <div
                               key={edu.id}
-                              className="p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-orange-500/40 transition-all"
+                              className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 hover:border-orange-500/40 transition-all"
                             >
-                              <div>
+                              <div className="min-w-0 flex-1">
                                 <h4 className="text-sm font-bold text-[var(--ink)] font-mono">
                                   {edu.degree}
                                 </h4>
@@ -1942,7 +1944,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                                 </p>
                               </div>
 
-                              <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                              <div className="flex items-center gap-2 shrink-0 self-end sm:self-center w-full sm:w-auto justify-end pt-2 sm:pt-0 border-t sm:border-t-0 border-[var(--line)]/50">
                                 <button
                                   onClick={() => {
                                     setEduForm({
@@ -2029,17 +2031,17 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                         />
                       </div>
 
-                      <div className="flex justify-end gap-2 pt-4 border-t border-[var(--line)]">
+                      <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 pt-4 border-t border-[var(--line)]">
                         <button
                           type="button"
                           onClick={() => setIsEditingEdu(false)}
-                          className="px-4 py-2 rounded-lg font-mono text-xs text-[var(--muted)] hover:text-[var(--ink)] cursor-pointer"
+                          className="w-full sm:w-auto text-center px-4 py-2 rounded-lg font-mono text-xs text-[var(--muted)] hover:text-[var(--ink)] cursor-pointer"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
-                          className="px-5 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer"
+                          className="w-full sm:w-auto justify-center px-5 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer"
                         >
                           <Save className="w-4 h-4" />
                           <span>Save Education</span>
@@ -2162,7 +2164,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                   <div className="flex justify-end pt-4 border-t border-[var(--line)]">
                     <button
                       type="submit"
-                      className="px-5 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer"
+                      className="w-full sm:w-auto justify-center px-5 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer"
                     >
                       <Save className="w-4 h-4" />
                       <span>Update Live Stats</span>
@@ -2181,7 +2183,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                   </p>
 
                   {/* 1. Header Overview */}
-                  <div className="p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] space-y-4">
+                  <div className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] space-y-4">
                     <h4 className="text-xs font-mono font-bold text-orange-600 dark:text-orange-400 uppercase tracking-wider">
                       Section Header &amp; Overview
                     </h4>
@@ -2233,7 +2235,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                   </div>
 
                   {/* 2. Three Focus Cards */}
-                  <div className="p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] space-y-4">
+                  <div className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] space-y-4">
                     <h4 className="text-xs font-mono font-bold text-orange-600 dark:text-orange-400 uppercase tracking-wider">
                       Domain Focus Cards (3 Cards)
                     </h4>
@@ -2241,9 +2243,9 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                     {(nowForm.focus_areas || []).map((card, idx) => (
                       <div
                         key={idx}
-                        className="p-3.5 rounded-lg bg-[var(--paper-3)]/60 border border-[var(--line)] space-y-3"
+                        className="p-3 sm:p-3.5 rounded-lg bg-[var(--paper-3)]/60 border border-[var(--line)] space-y-3"
                       >
-                        <div className="flex items-center justify-between gap-2">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
                           <span className="text-[11px] font-mono font-bold text-orange-600 dark:text-orange-400">
                             CARD 0{idx + 1}: {card.domain || `Domain ${idx + 1}`}
                           </span>
@@ -2333,7 +2335,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                   </div>
 
                   {/* 3. Bottom Telemetry Strip */}
-                  <div className="p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] space-y-4">
+                  <div className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] space-y-4">
                     <h4 className="text-xs font-mono font-bold text-orange-600 dark:text-orange-400 uppercase tracking-wider">
                       Bottom Telemetry Strip (6 Items)
                     </h4>
@@ -2389,7 +2391,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                   </div>
 
                   {/* 4. Availability & Role Info */}
-                  <div className="p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] space-y-4">
+                  <div className="p-3 sm:p-4 rounded-xl bg-[var(--paper-2)]/60 border border-[var(--line)] space-y-4">
                     <h4 className="text-xs font-mono font-bold text-orange-600 dark:text-orange-400 uppercase tracking-wider">
                       Developer Availability &amp; Status
                     </h4>
@@ -2442,7 +2444,7 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                   <div className="flex justify-end pt-4 border-t border-[var(--line)]">
                     <button
                       type="submit"
-                      className="px-5 py-2.5 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-md hover:shadow-orange-500/20"
+                      className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-md hover:shadow-orange-500/20"
                     >
                       <Save className="w-4 h-4" />
                       <span>Update Now Section</span>
@@ -2460,13 +2462,13 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                     Upload new files directly to your public Supabase Storage bucket (<code>portfolio-assets</code>).
                   </p>
 
-                  <div className="p-6 rounded-xl border border-dashed border-[var(--line)] bg-[var(--paper-2)]/40 text-center">
+                  <div className="p-4 sm:p-6 rounded-xl border border-dashed border-[var(--line)] bg-[var(--paper-2)]/40 text-center">
                     <label className="inline-flex flex-col items-center gap-2 cursor-pointer">
                       <div className="p-3 rounded-full bg-orange-500/10 text-orange-600 dark:text-orange-400">
                         {uploadingAsset ? (
-                          <Loader2 className="w-6 h-6 animate-spin" />
+                          <Loader2 className="w-6 h-6 animate-spin text-orange-500" />
                         ) : (
-                          <Upload className="w-6 h-6" />
+                          <Upload className="w-6 h-6 text-orange-500" />
                         )}
                       </div>
                       <span className="font-mono text-xs font-bold text-[var(--ink)]">
@@ -2484,23 +2486,23 @@ export default function AdminModal({ isOpen, onClose, onRefreshData, rawDbData }
                   </div>
 
                   {uploadedAssetUrl && (
-                    <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-500">
+                    <div className="p-3 sm:p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-500">
                       <div className="text-xs font-mono font-bold mb-1">
                         FILE UPLOADED SUCCESSFULLY:
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                         <input
                           type="text"
                           readOnly
                           value={uploadedAssetUrl}
-                          className="flex-1 px-2.5 py-1.5 text-xs rounded bg-[var(--paper)] text-[var(--ink)] font-mono border border-[var(--line)]"
+                          className="w-full sm:flex-1 min-w-0 px-2.5 py-1.5 text-xs rounded bg-[var(--paper)] text-[var(--ink)] font-mono border border-[var(--line)]"
                         />
                         <button
                           onClick={() => {
                             navigator.clipboard.writeText(uploadedAssetUrl);
                             showNotification("info", "URL copied to clipboard!");
                           }}
-                          className="px-3 py-1.5 text-xs font-mono rounded bg-emerald-600 text-white cursor-pointer"
+                          className="w-full sm:w-auto justify-center px-3 py-1.5 text-xs font-mono rounded bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer transition-colors"
                         >
                           Copy
                         </button>
