@@ -491,7 +491,7 @@ export default function Projects({ onActionClick, openPalette, projects }) {
                               <div className="space-y-2 text-xs">
                                 {/* v1.0 Baseline */}
                                 <div className="p-2 rounded-lg bg-black/15 dark:bg-black/30 border border-red-500/15 flex items-start gap-2">
-                                  <span className="px-1.5 py-0.2 rounded text-[9.5px] font-mono font-semibold bg-red-500/15 text-red-400 border border-red-500/25 flex-shrink-0 mt-0.5">
+                                  <span className="px-1.5 py-0.2 rounded text-[9.5px] font-mono font-semibold bg-red-100/15 text-red-500 border border-red-500/25 flex-shrink-0 mt-0.5">
                                     v1.0
                                   </span>
                                   <span className="text-[var(--ink-2)] line-clamp-2">
@@ -501,7 +501,7 @@ export default function Projects({ onActionClick, openPalette, projects }) {
 
                                 {/* v2.6 Upgrade */}
                                 <div className="p-2 rounded-lg bg-emerald-500/[0.06] border border-emerald-500/25 flex items-start gap-2">
-                                  <span className="px-1.5 py-0.2 rounded text-[9.5px] font-mono font-semibold bg-emerald-500/25 text-emerald-300 border border-emerald-500/35 flex-shrink-0 mt-0.5">
+                                  <span className="px-1.5 py-0.2 rounded text-[9.5px] font-mono font-semibold bg-emerald-200/25 text-emerald-500 border border-emerald-500/35 flex-shrink-0 mt-0.5">
                                     v2.6
                                   </span>
                                   <span className="text-[var(--ink)] font-medium leading-relaxed">
