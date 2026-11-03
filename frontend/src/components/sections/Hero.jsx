@@ -5,6 +5,91 @@ import TiltCard from "../common/TiltCard";
 import InteractiveTerminal from "./InteractiveTerminal";
 
 /**
+ * Formats the hero headline and restores the distinctive italic serif accent styling
+ * on "production-grade" or any word wrapped in *word*.
+ */
+function renderHeadline(headline) {
+  if (!headline) {
+    return (
+      <>
+        I build scalable enterprise systems &amp;{" "}
+        <span className="accent-word">production-grade</span> platforms.
+      </>
+    );
+  }
+
+  // Support *accent word* syntax from custom admin inputs
+  if (/\*([^*]+)\*/.test(headline)) {
+    const parts = headline.split(/\*([^*]+)\*/);
+    return parts.map((part, i) =>
+      i % 2 === 1 ? (
+        <span key={i} className="accent-word">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  }
+
+  // Automatically style "production-grade" with previous italic serif accent
+  if (/production-grade/i.test(headline)) {
+    const parts = headline.split(/(production-grade)/i);
+    return parts.map((part, i) =>
+      part.toLowerCase() === "production-grade" ? (
+        <span key={i} className="accent-word">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  }
+
+  return headline;
+}
+
+/**
+ * Formats bio text with key technical metrics highlighted in bold.
+ */
+function renderBio(bio) {
+  if (!bio) {
+    return (
+      <>
+        Full Stack Developer (B.Tech CSE) with <b>1.5+ years of experience</b>,{" "}
+        <b>60+ React projects</b>, and <b>200+ LeetCode problems</b> solved.
+        Hands-on domain experience in automotive dealership ERP systems, HR
+        management, and e-commerce with low-latency API optimization (
+        <b>~100ms</b> under heavy transaction load).
+      </>
+    );
+  }
+
+  // Support markdown bold **text**
+  if (/\*\*([^*]+)\*\*/.test(bio)) {
+    const parts = bio.split(/\*\*([^*]+)\*\*/);
+    return parts.map((part, i) =>
+      i % 2 === 1 ? <b key={i}>{part}</b> : part
+    );
+  }
+
+  // Highlight default metric keywords if plain text string
+  if (/1\.5\+\s*years/i.test(bio) && /60\+\s*React/i.test(bio)) {
+    return (
+      <>
+        Full Stack Developer (B.Tech CSE) with <b>1.5+ years of experience</b>,{" "}
+        <b>60+ React projects</b>, and <b>200+ LeetCode problems</b> solved.
+        Hands-on domain experience in automotive dealership ERP systems, HR
+        management, and e-commerce with low-latency API optimization (
+        <b>~100ms</b> under heavy transaction load).
+      </>
+    );
+  }
+
+  return bio;
+}
+
+/**
  * Hero Component
  * Displays role headline, bio narrative, 3D tilt portrait card, and interactive CLI terminal sandbox.
  */
@@ -25,26 +110,9 @@ export default function Hero({ onActionClick, onOpenAdmin, personalInfo }) {
               <span>{info.roleStatus}</span>
             </div>
 
-            <h1>
-              {info.headline ? (
-                info.headline
-              ) : (
-                <>
-                  I build scalable enterprise systems &amp;{" "}
-                  <span className="accent-word">production-grade</span> platforms.
-                </>
-              )}
-            </h1>
+            <h1>{renderHeadline(info.headline)}</h1>
 
-            <p className="hero-sub">
-              {info.bio ? (
-                info.bio
-              ) : (
-                <>
-                  Full Stack Developer (B.Tech CSE) with <b>1.5+ years of experience</b>, <b>60+ React projects</b>, and <b>200+ LeetCode problems</b> solved. Hands-on domain experience in automotive dealership ERP systems, HR management, and e-commerce with low-latency API optimization (<b>~100ms</b> under heavy transaction load).
-                </>
-              )}
-            </p>
+            <p className="hero-sub">{renderBio(info.bio)}</p>
 
             <div className="hero-meta">
               <span>
